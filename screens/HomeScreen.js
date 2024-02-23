@@ -1,39 +1,104 @@
-import React, { useState } from 'react';
-import { View, Text, Image, TextInput, TouchableHighlight, TouchableOpacity } from 'react-native';
+import React, { useState, useEffect } from 'react';
+import { View, Text, Image, TextInput, TouchableHighlight, TouchableOpacity, StyleSheet } from 'react-native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import HomeScreenStyles from '../styles/HomeScreenStyles';
-import LoginRegistro from './LoginRegistro';
 
 const HomeScreen = ({ navigation }) => {
   const [selectedOption, setSelectedOption] = useState(null);
+  const [loggedIn, setLoggedIn] = useState(false);
+  const [username, setUsername] = useState('');
+
+  useEffect(() => {
+    const checkLoggedInStatus = async () => {
+      try {
+        const storedUsername = await AsyncStorage.getItem('username');
+        if (storedUsername) {
+          setUsername(storedUsername);
+          setLoggedIn(true);
+        }
+      } catch (error) {
+        console.log('Error al verificar el estado de inicio de sesión:', error);
+      }
+    };
+
+    // Verificar el estado de inicio de sesión al cargar la pantalla
+    checkLoggedInStatus();
+  }, []);
+
+  useEffect(() => {
+    const checkLoggedInStatus = async () => {
+      try {
+        const storedUsername = await AsyncStorage.getItem('username');
+        if (storedUsername) {
+          setUsername(storedUsername);
+          setLoggedIn(true);
+        }
+      } catch (error) {
+        console.log('Error al verificar el estado de inicio de sesión:', error);
+      }
+    };
+
+    // Verificar el estado de inicio de sesión al volver a esta pantalla
+    const unsubscribe = navigation.addListener('focus', () => {
+      checkLoggedInStatus();
+    });
+
+    return unsubscribe;
+  }, [navigation]);
 
   const handleSearch = () => {
-    // Aquí puedes agregar la lógica para manejar la búsqueda
+    // Lógica para manejar la búsqueda
   };
 
   const handleOptionPress = (option) => {
     setSelectedOption(option);
-    // Aquí puedes agregar la lógica para manejar la selección de opción
+    // Lógica para manejar la selección de opción
   };
 
- return (
-     <View style={HomeScreenStyles.container}>
-       <View style={HomeScreenStyles.header}>
-         <Text style={HomeScreenStyles.title}>Bienvenidos a Nexahome</Text>
-         <Image
-           source={require('../assets/nexahome.png')}
-           style={HomeScreenStyles.icon}
-         />
-         <View style={HomeScreenStyles.headerLinksContainer}>
-       <TouchableOpacity onPress={() => navigation.navigate('LoginRegistro', { action: 'Login' })}>
-         <Text style={HomeScreenStyles.headerLink}>Iniciar sesión</Text>
-       </TouchableOpacity>
+  const handleLogout = async () => {
+    try {
+      await AsyncStorage.removeItem('username');
+      setLoggedIn(false);
+      setUsername('');
+    } catch (error) {
+      console.log('Error al cerrar sesión:', error);
+    }
+  };
 
-       <TouchableOpacity onPress={() => navigation.navigate('LoginRegistro', { action: 'Registro' })}>
-         <Text style={HomeScreenStyles.headerLink}>Registrarse</Text>
-       </TouchableOpacity>
-         </View>
-       </View>
-       <View style={HomeScreenStyles.content}>
+  return (
+    <View style={HomeScreenStyles.container}>
+      <View style={HomeScreenStyles.header}>
+        <Text style={HomeScreenStyles.title}>Bienvenidos a Nexahome</Text>
+        <Image
+          source={require('../assets/nexahome.png')}
+          style={HomeScreenStyles.icon}
+        />
+        <View style={HomeScreenStyles.headerLinksContainer}>
+          {loggedIn ? (
+            <TouchableOpacity style={styles.dropdownContainer} onPress={() => setSelectedOption('profile')}>
+              <Text style={HomeScreenStyles.headerLink}>Bienvenido, {username}</Text>
+              {selectedOption === 'profile' && (
+                <View style={styles.dropdown}>
+                  <TouchableOpacity style={styles.dropdownItem} onPress={handleLogout}>
+                    <Text style={styles.dropdownText}>Cerrar sesión</Text>
+                  </TouchableOpacity>
+                </View>
+              )}
+            </TouchableOpacity>
+          ) : (
+            <>
+              <TouchableOpacity onPress={() => navigation.navigate('LoginRegistro', { action: 'Login' })}>
+                <Text style={HomeScreenStyles.headerLink}>Iniciar sesión</Text>
+              </TouchableOpacity>
+
+              <TouchableOpacity onPress={() => navigation.navigate('LoginRegistro', { action: 'Registro' })}>
+                <Text style={HomeScreenStyles.headerLink}>Registrarse</Text>
+              </TouchableOpacity>
+            </>
+          )}
+        </View>
+      </View>
+      <View style={HomeScreenStyles.content}>
         {/* Barra de búsqueda */}
         <View style={HomeScreenStyles.searchBar}>
           <Image
@@ -79,5 +144,29 @@ const HomeScreen = ({ navigation }) => {
     </View>
   );
 };
+
+const styles = StyleSheet.create({
+  dropdownContainer: {
+    position: 'relative',
+  },
+  dropdown: {
+    position: 'absolute',
+    top: '100%',
+    right: 0,
+    backgroundColor: '#fff',
+    borderRadius: 4,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.25,
+    shadowRadius: 4,
+    elevation: 5,
+  },
+  dropdownItem: {
+    padding: 10,
+  },
+  dropdownText: {
+    color: '#000',
+  },
+});
 
 export default HomeScreen;

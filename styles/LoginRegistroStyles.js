@@ -113,6 +113,7 @@ const LoginRegistroStyles = StyleSheet.create({
      height: '100%',
  },
 
+
 });
 
 export default LoginRegistroStyles;

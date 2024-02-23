@@ -11,6 +11,23 @@ const LoginRegistro = () => {
   const navigation = useNavigation();
   const [user, setUser] = useState({ name: '', email: '', password: '' });
   const [action, setAction] = useState('Registro');
+  const [username, setUsername] = useState('');
+
+  useEffect(() => {
+    // Función para obtener el nombre de usuario guardado en AsyncStorage
+    const getUsername = async () => {
+      try {
+        const storedUsername = await AsyncStorage.getItem('username');
+        if (storedUsername !== null) {
+          setUsername(storedUsername);
+        }
+      } catch (error) {
+        console.log('Error al obtener el nombre de usuario desde AsyncStorage:', error);
+      }
+    };
+
+    getUsername();
+  }, []);
 
   const handleLogin = async () => {
     if (action === 'Registro') {
@@ -24,14 +41,14 @@ const LoginRegistro = () => {
       const storedUser = await AsyncStorage.getItem('user');
       const validUser = JSON.parse(storedUser);
 
-   if (validUser && user.email === validUser.email && user.password === validUser.password) {
-     await AsyncStorage.setItem('username', validUser.name);
-     Alert.alert('Inicio de sesión exitoso');
-     navigation.navigate('Menu');
-   } else {
-     Alert.alert('Credenciales incorrectas');
-   }
-
+      if (validUser && user.email === validUser.email && user.password === validUser.password) {
+        await AsyncStorage.setItem('username', validUser.name);
+        setUsername(validUser.name); // Establecer el nombre de usuario en el estado
+        Alert.alert('Inicio de sesión exitoso');
+        navigation.navigate('Menu');
+      } else {
+        Alert.alert('Credenciales incorrectas');
+      }
     }
   };
 
@@ -69,77 +86,80 @@ const LoginRegistro = () => {
   };
 
   return (
-    <View style={LoginRegistroStyles.container}>
-      {renderVideoBackground()}
-      <View style={LoginRegistroStyles.contentContainer}>
-        <View style={LoginRegistroStyles.header}>
-          <Text style={LoginRegistroStyles.text}>{action}</Text>
-          <View style={LoginRegistroStyles.underline}></View>
-        </View>
+      <View style={LoginRegistroStyles.container}>
+        {renderVideoBackground()}
+        <View style={LoginRegistroStyles.contentContainer}>
+          <View style={LoginRegistroStyles.header}>
+            <Text style={LoginRegistroStyles.text}>{action}</Text>
+            <View style={LoginRegistroStyles.underline}></View>
+          </View>
 
-        <View style={LoginRegistroStyles.inputs}>
-          {action === 'Login' ? null : (
+          <View style={LoginRegistroStyles.inputs}>
+            {action === 'Login' ? null : (
+              <View style={LoginRegistroStyles.input}>
+                <Image source={icono_usuario} style={LoginRegistroStyles.icon} />
+                <TextInput
+                  style={LoginRegistroStyles.inputText}
+                  placeholder='Nombre'
+                  value={user.name}
+                  onChangeText={(value) => handleChange('name', value)}
+                />
+              </View>
+            )}
             <View style={LoginRegistroStyles.input}>
-              <Image source={icono_usuario} style={LoginRegistroStyles.icon} />
+              <Image source={icono_email} style={LoginRegistroStyles.icon} />
               <TextInput
                 style={LoginRegistroStyles.inputText}
-                placeholder='Nombre'
-                value={user.name}
-                onChangeText={(value) => handleChange('name', value)}
+                placeholder='Email'
+                value={user.email}
+                onChangeText={(value) => handleChange('email', value)}
               />
             </View>
-          )}
-          <View style={LoginRegistroStyles.input}>
-            <Image source={icono_email} style={LoginRegistroStyles.icon} />
-            <TextInput
-              style={LoginRegistroStyles.inputText}
-              placeholder='Email'
-              value={user.email}
-              onChangeText={(value) => handleChange('email', value)}
-            />
+            <View style={LoginRegistroStyles.input}>
+              <Image source={icono_password} style={LoginRegistroStyles.icon} />
+              <TextInput
+                style={LoginRegistroStyles.inputText}
+                placeholder='Contraseña'
+                secureTextEntry
+                value={user.password}
+                onChangeText={(value) => handleChange('password', value)}
+              />
+            </View>
           </View>
-          <View style={LoginRegistroStyles.input}>
-            <Image source={icono_password} style={LoginRegistroStyles.icon} />
-            <TextInput
-              style={LoginRegistroStyles.inputText}
-              placeholder='Contraseña'
-              secureTextEntry
-              value={user.password}
-              onChangeText={(value) => handleChange('password', value)}
-            />
-          </View>
-        </View>
 
-        {action === 'Registro' ? (
-          <TouchableOpacity style={LoginRegistroStyles.olvidarContraseña}></TouchableOpacity>
-        ) : null}
+          {action === 'Registro' ? (
+            <TouchableOpacity style={LoginRegistroStyles.olvidarContraseña}></TouchableOpacity>
+          ) : null}
 
-        <View style={LoginRegistroStyles.submitContainer}>
-          {action === 'Registro' && (
-            <TouchableOpacity style={LoginRegistroStyles.submit} onPress={handleLogin}>
-              <Text style={{ color: '#fff' }}>Registrar</Text>
+          <View style={LoginRegistroStyles.submitContainer}>
+            {action === 'Registro' && (
+              <TouchableOpacity style={LoginRegistroStyles.submit} onPress={handleLogin}>
+                <Text style={{ color: '#fff' }}>Registrar</Text>
+              </TouchableOpacity>
+            )}
+            {action === 'Login' && (
+              <TouchableOpacity style={LoginRegistroStyles.submit} onPress={switchToRegistro}>
+                <Text style={{ color: '#fff' }}>Registro</Text>
+              </TouchableOpacity>
+            )}
+            <TouchableOpacity style={LoginRegistroStyles.submit} onPress={switchToLogin}>
+              <Text style={{ color: '#fff' }}>Login</Text>
             </TouchableOpacity>
-          )}
+          </View>
+
           {action === 'Login' && (
-            <TouchableOpacity style={LoginRegistroStyles.submit} onPress={switchToRegistro}>
-              <Text style={{ color: '#fff' }}>Registro</Text>
-            </TouchableOpacity>
+            <View style={LoginRegistroStyles.entrarContainer}>
+              <TouchableOpacity style={LoginRegistroStyles.entrarButton} onPress={handleLogin}>
+                <Text style={{ color: '#fff' }}>Entrar</Text>
+              </TouchableOpacity>
+            </View>
           )}
-          <TouchableOpacity style={LoginRegistroStyles.submit} onPress={switchToLogin}>
-            <Text style={{ color: '#fff' }}>Login</Text>
-          </TouchableOpacity>
+
+          {/* Mostrar el nombre de usuario si está disponible */}
+
         </View>
-
-        {action === 'Login' && (
-          <View style={LoginRegistroStyles.entrarContainer}>
-            <TouchableOpacity style={LoginRegistroStyles.entrarButton} onPress={handleLogin}>
-              <Text style={{ color: '#fff' }}>Entrar</Text>
-            </TouchableOpacity>
-          </View>
-        )}
       </View>
-    </View>
-  );
-};
+    );
+  };
 
-export default LoginRegistro;
+  export default LoginRegistro;
