@@ -24,12 +24,14 @@ const LoginRegistro = () => {
       const storedUser = await AsyncStorage.getItem('user');
       const validUser = JSON.parse(storedUser);
 
-      if (validUser && user.email === validUser.email && user.password === validUser.password) {
-        Alert.alert('Inicio de sesión exitoso');
-        navigation.navigate('Menu');
-      } else {
-        Alert.alert('Credenciales incorrectas');
-      }
+   if (validUser && user.email === validUser.email && user.password === validUser.password) {
+     await AsyncStorage.setItem('username', validUser.name);
+     Alert.alert('Inicio de sesión exitoso');
+     navigation.navigate('Menu');
+   } else {
+     Alert.alert('Credenciales incorrectas');
+   }
+
     }
   };
 
@@ -44,6 +46,7 @@ const LoginRegistro = () => {
   const switchToRegistro = () => {
     setAction('Registro');
   };
+
 
   useEffect(() => {
     // Limpiar reproductor de video en desmontaje

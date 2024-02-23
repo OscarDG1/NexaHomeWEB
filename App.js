@@ -10,8 +10,8 @@ const App = () => {
   return (
     <NavigationContainer>
       <Stack.Navigator initialRouteName="Menu">
-        <Stack.Screen name="NexaHome" component={LoginRegistro} />
         <Stack.Screen name="Menu" component={MenuScreen} />
+        <Stack.Screen name="LoginRegistro" component={LoginRegistro} />
       </Stack.Navigator>
     </NavigationContainer>
   );
