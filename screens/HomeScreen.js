@@ -53,6 +53,11 @@ const HomeScreen = ({ navigation }) => {
   const handleOptionPress = (option) => {
     setSelectedOption(option);
     // Lógica para manejar la selección de opción
+    if (option === 'Cerrar sesión') {
+      handleLogout();
+    } else {
+      // Manejar la acción correspondiente a la opción seleccionada
+    }
   };
 
   const handleLogout = async () => {
@@ -75,13 +80,23 @@ const HomeScreen = ({ navigation }) => {
         />
         <View style={HomeScreenStyles.headerLinksContainer}>
           {loggedIn ? (
-            <TouchableOpacity style={styles.dropdownContainer} onPress={() => setSelectedOption('profile')}>
+            <TouchableOpacity
+              style={styles.dropdownContainer}
+              onPress={() => setSelectedOption(selectedOption === 'profile' ? null : 'profile')}
+            >
+
               <Text style={HomeScreenStyles.headerLink}>Bienvenido, {username}</Text>
               {selectedOption === 'profile' && (
+
                 <View style={styles.dropdown}>
+                <TouchableOpacity style={styles.dropdownItem} onPress={() => handleOptionPress('Perfil')}>
+                                    <Text style={styles.dropdownText}>Perfil</Text>
+                                  </TouchableOpacity>
                   <TouchableOpacity style={styles.dropdownItem} onPress={handleLogout}>
                     <Text style={styles.dropdownText}>Cerrar sesión</Text>
                   </TouchableOpacity>
+                  {/* Aquí puedes agregar más opciones */}
+
                 </View>
               )}
             </TouchableOpacity>
