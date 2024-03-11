@@ -1,7 +1,10 @@
+// HomeScreen.js
+
 import React, { useState, useEffect } from 'react';
 import { View, Text, Image, TextInput, TouchableHighlight, TouchableOpacity, StyleSheet } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import HomeScreenStyles from '../styles/HomeScreenStyles';
+import PerfilScreen from './PerfilScreen'; // Importa la pantalla de perfil
 
 const HomeScreen = ({ navigation }) => {
   const [selectedOption, setSelectedOption] = useState(null);
@@ -51,12 +54,14 @@ const HomeScreen = ({ navigation }) => {
   };
 
   const handleOptionPress = (option) => {
-    setSelectedOption(option);
-    // Lógica para manejar la selección de opción
     if (option === 'Cerrar sesión') {
       handleLogout();
+    } else if (option === 'Perfil') {
+      navigation.navigate('Perfil'); // Navegar a la pantalla de perfil como modal
+      setIsDropdownOpen(false); // Cerrar el menú desplegable después de la navegación
+    } else if (option === 'comprar' || option === 'alquilar') {
+      setSelectedOption(option);
     } else {
-      // Manejar la acción correspondiente a la opción seleccionada
     }
   };
 
