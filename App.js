@@ -11,7 +11,7 @@ const Stack = createStackNavigator();
 const App = () => {
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="Propiedad">
+      <Stack.Navigator initialRouteName="Menu">
         <Stack.Screen name="Menu" component={MenuScreen} />
         <Stack.Screen name="LoginRegistro" component={LoginRegistro} />
         <Stack.Screen name="Perfil" component={PerfilScreen} options={{ presentation: 'modal' }} />

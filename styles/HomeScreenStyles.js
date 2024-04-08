@@ -1,61 +1,99 @@
 import { StyleSheet } from 'react-native';
 
-const PropiedadStyles = StyleSheet.create({
+const HomeScreenStyles = StyleSheet.create({
   container: {
     flex: 1,
-    paddingHorizontal: 20,
-    paddingTop: 50,
-    backgroundColor: '#f0f0f0',
-  },
-  form: {
-    flexGrow: 1,
+    alignItems: 'center',
     justifyContent: 'center',
+    paddingTop: 50, // Ajusta según sea necesario para subir todos los elementos
+  },
+  header: {
+    alignItems: 'center',
+    position: 'relative',
   },
   title: {
     fontSize: 24,
     fontWeight: 'bold',
     textAlign: 'center',
-    marginBottom: 20,
   },
-  inputContainer: {
-    marginBottom: 20,
+  icon: {
+    width: 150,
+    height: 150,
+    marginTop: 20,
   },
-  label: {
-    fontWeight: 'bold',
-    marginBottom: 5,
+  content: {
+    flex: 1,
+    justifyContent: 'flex-start', // Alinea el contenido al principio
+    alignItems: 'center',
+    marginTop: 20, // Ajusta según sea necesario para subir los elementos del contenido
   },
-  input: {
+  searchBar: {
+    flexDirection: 'row',
+    alignItems: 'center',
     borderWidth: 1,
     borderColor: '#ccc',
     borderRadius: 5,
     paddingHorizontal: 10,
+    marginTop: 20, // Ajusta según sea necesario para subir la barra de búsqueda
+  },
+  searchIcon: {
+    width: 20,
+    height: 20,
+    marginRight: 10,
+  },
+  searchInput: {
+    flex: 1,
     height: 40,
-    width: 200,
+    paddingHorizontal: 10,
   },
-  selectContainer: {
-    marginBottom: 20, // Separación vertical entre los botones y otros elementos
+  searchButton: {
+    backgroundColor: '#007bff',
+    padding: 10,
+    borderRadius: 5,
+    marginLeft: 10,
   },
-  select: {
-    flexDirection: 'row', // Cambiamos la dirección del contenedor a fila
-    justifyContent: 'space-around',
-    marginBottom: 20, // Separación vertical entre los botones y otros elementos
+  searchButtonText: {
+    color: '#fff',
+    fontWeight: 'bold',
+  },
+  options: {
+    flexDirection: 'row',
+    justifyContent: 'center',
+    marginTop: 20, // Ajusta según sea necesario para subir las opciones
   },
   optionButton: {
-    flex: 1, // Para que los botones se ajusten al contenido y no ocupen toda la fila
-    backgroundColor: '#007bff', // Color de fondo inicial
+    backgroundColor: '#007bff',
     paddingVertical: 10,
     paddingHorizontal: 20,
     borderRadius: 5,
-    marginHorizontal: 10, // Separación horizontal entre los botones
+    marginHorizontal: 10,
   },
   optionText: {
-    color: '#fff', // Color del texto en los botones
+    color: '#fff',
     fontWeight: 'bold',
-    textAlign: 'center', // Alineación del texto al centro
   },
   selectedOption: {
-    backgroundColor: '#0056b3', // Color de fondo al ser seleccionado
+    backgroundColor: '#0056b3',
+  },
+
+  // Nuevos estilos para los enlaces en la esquina superior derecha
+  headerLinksContainer: {
+    position: 'absolute',
+    top: 0,
+    right: 0,
+    flexDirection: 'row',
+    marginRight: -530,
+    marginTop: -40,
+  },
+  headerLink: {
+    backgroundColor: '#007bff',
+    paddingVertical: 10,
+    paddingHorizontal: 20,
+    borderRadius: 5,
+    marginLeft: 10,
+    color: '#fff',
+    fontWeight: 'bold',
   },
 });
 
-export default PropiedadStyles;
+export default HomeScreenStyles;
