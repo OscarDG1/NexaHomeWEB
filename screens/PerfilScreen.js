@@ -1,15 +1,13 @@
-// PerfilScreen.js
-
 import React, { useState, useEffect } from 'react';
-import { View, Text, TextInput, Button, StyleSheet } from 'react-native';
+import { View, Text, TextInput, Button, StyleSheet, Image, TouchableOpacity } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
-const PerfilScreen = () => {
+const PerfilScreen = ({ navigation }) => {
   const [userData, setUserData] = useState({
     username: '',
     email: '',
     password: '',
-    avatar: '', // Puedes manejar el avatar como una URL o un identificador
+    avatar: '', // Ruta de la imagen de perfil por defecto
   });
 
   useEffect(() => {
@@ -27,6 +25,20 @@ const PerfilScreen = () => {
     fetchUserData();
   }, []);
 
+  useEffect(() => {
+    const saveUserData = async () => {
+      try {
+        await AsyncStorage.setItem('userData', JSON.stringify(userData));
+        // Aquí podrías añadir lógica adicional, como mostrar una confirmación al usuario
+      } catch (error) {
+        console.log('Error al guardar cambios:', error);
+      }
+    };
+
+    // Guardar los datos del usuario cada vez que se actualiza el estado
+    saveUserData();
+  }, [userData]);
+
   const handleUsernameChange = (newUsername) => {
     setUserData({ ...userData, username: newUsername });
   };
@@ -39,18 +51,20 @@ const PerfilScreen = () => {
     setUserData({ ...userData, password: newPassword });
   };
 
-  const handleSaveChanges = async () => {
-    try {
-      await AsyncStorage.setItem('userData', JSON.stringify(userData));
-      // Aquí podrías añadir lógica adicional, como mostrar una confirmación al usuario
-    } catch (error) {
-      console.log('Error al guardar cambios:', error);
-    }
+  const handleChooseAvatar = () => {
+    // Lógica para permitir al usuario seleccionar una imagen de perfil
   };
 
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Perfil de Usuario</Text>
+      <Image
+        source={{ uri: userData.avatar }}
+        style={styles.avatar}
+      />
+      <TouchableOpacity onPress={handleChooseAvatar}>
+        <Text>Cambiar Imagen</Text>
+      </TouchableOpacity>
       <TextInput
         style={styles.input}
         placeholder="Nombre de usuario"
@@ -70,7 +84,7 @@ const PerfilScreen = () => {
         value={userData.password}
         onChangeText={handlePasswordChange}
       />
-      <Button title="Guardar Cambios" onPress={handleSaveChanges} />
+      <Button title="Guardar Cambios" onPress={() => {}} />
     </View>
   );
 };
@@ -93,6 +107,12 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     marginBottom: 20,
     paddingHorizontal: 10,
+  },
+  avatar: {
+    width: 150,
+    height: 150,
+    borderRadius: 75,
+    marginBottom: 20,
   },
 });
 

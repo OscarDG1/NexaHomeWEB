@@ -73,7 +73,7 @@ const LoginRegistroStyles = StyleSheet.create({
     alignItems: 'center',
     width: '100%',
     paddingHorizontal: 16,
-    marginTop: 30,
+    marginTop: -20,
   },
   submit: {
     justifyContent: 'center',
