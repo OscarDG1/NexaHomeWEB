@@ -5,37 +5,43 @@ import { useNavigation } from '@react-navigation/native';
 import icono_usuario from '../assets/person.png';
 import icono_email from '../assets/email.png';
 import icono_password from '../assets/password.png';
-import icono_telefono from '../assets/telefono.png'; // Importación del icono del teléfono
+import icono_telefono from '../assets/telefono.png'; //
 import LoginRegistroStyles from '../styles/LoginRegistroStyles';
 
-const API_BASE_URL = 'http://192.168.58.116:7770';
+const API_BASE_URL = 'https://test.javi.local:7770';
 
 
 const LoginRegistro = () => {
   const navigation = useNavigation();
-  const [user, setUser] = useState({ name: '', email: '', password: '', telefono: '' }); // Agregar 'telefono' al estado
+  const [user, setUser] = useState({ name: '', email: '', password: '', telefono: '' });
   const [action, setAction] = useState('Registro');
   const [username, setUsername] = useState('');
 
-  useEffect(() => {
-    // Función para obtener el nombre de usuario guardado en el servidor
-    const getUsername = async () => {
-      try {
-        // Hacer una solicitud para obtener el nombre de usuario
-        const response = await axios.get(`${API_BASE_URL}/username`);
-        setUsername(response.data.username);
-      } catch (error) {
-        console.log('Error al obtener el nombre de usuario desde el servidor:', error);
-      }
-    };
+useEffect(() => {
+  // Función para obtener el nombre de usuario guardado en el servidor
+  const getUsername = async () => {
+    try {
+      // Hacer una solicitud para obtener el nombre de usuario
+      const response = await axios.get(`${API_BASE_URL}/users`);
+      setUsername(response.data.username);
+    } catch (error) {
+      console.log('Error al obtener el nombre de usuario desde el servidor:', error);
+    }
+  };
 
-    getUsername();
-  }, []);
+  getUsername();
+}, []);
+
 
 const handleRegistro = async () => {
   try {
-    const { email, password } = user;
-    await axios.post(`${API_BASE_URL}/register/`, { email, password });
+    const { name, email, password, telefono } = user;
+    await axios.post(`${API_BASE_URL}/register`, {
+      name: name,
+      email: email,
+      password: password,
+      telefono: telefono
+    });
     Alert.alert('Registro exitoso');
   } catch (error) {
     console.error('Error al registrar el usuario:', error);
@@ -43,15 +49,17 @@ const handleRegistro = async () => {
   }
 };
 
-
-
-
-
 const handleLogin = async () => {
   try {
     const { email, password } = user;
-    const response = await axios.get(`${API_BASE_URL}/login/?email=${email}&passw=${password}`);
-    if (response.data === "Esta registrado") {
+    const response = await axios.get(`${API_BASE_URL}/login`, {
+      params: {
+        email: email,
+        passw: password
+      }
+    });
+
+    if (response.data && response.data.token) {
       Alert.alert('Inicio de sesión exitoso');
       navigation.navigate('Menu');
     } else {
@@ -64,6 +72,7 @@ const handleLogin = async () => {
 };
 
 
+
    const handleChange = (field, value) => {
      setUser({ ...user, [field]: value });
    };
@@ -73,6 +82,7 @@ const handleLogin = async () => {
    };
 
    const switchToRegistro = () => {
+
      setAction('Registro');
    };
 
