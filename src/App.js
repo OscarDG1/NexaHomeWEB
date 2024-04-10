@@ -1,24 +1,22 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+
+import HomeScreen from './screens/HomeScreen';
+import PerfilScreen from './screens/PerfilScreen';
+import LoginRegistro from './screens/LoginRegistro';
 
 function App() {
+  console.log("La función App está siendo llamada");
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <Routes>
+        {/* Esta ruta renderizará HomeScreen al iniciar el proyecto */}
+        <Route path="/" element={<HomeScreen />} />
+        <Route path="/perfil" element={<PerfilScreen />} />
+        <Route path="/loginRegistro" element={<LoginRegistro />} />
+      </Routes>
+    </Router>
   );
 }
 

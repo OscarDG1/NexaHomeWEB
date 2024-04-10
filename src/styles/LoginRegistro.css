@@ -1,0 +1,133 @@
+.container {
+  flex: 1;
+  justify-content: center;
+  align-items: center;
+  background-color: #fff;
+  padding: 30px;
+  overflow: hidden;
+}
+
+.header {
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.text {
+  color: #ffffff;
+  font-size: 28px;
+  font-weight: 700;
+  text-align: center;
+}
+
+.underline {
+  width: 61px;
+  height: 6px;
+  background-color: #ffffff;
+  border-radius: 9px;
+  margin-top: 5px;
+}
+
+.inputs {
+  margin-top: 25px;
+  width: 100%;
+  padding-horizontal: 16px;
+  max-width: 600px;
+  align-items: center;
+}
+
+.input {
+  flex-direction: row;
+  align-items: center;
+  width: 100%;
+  max-width: 480px;
+  height: 50px;
+  background-color: #eaeaea;
+  border-radius: 6px;
+  margin-bottom: 20px;
+  padding-left: 10px;
+}
+
+.icon {
+  margin-horizontal: 10px;
+  width: 18px;
+  height: 18px;
+}
+
+.inputText {
+  flex: 1;
+  height: 40px;
+  background-color: transparent;
+  border-width: 0;
+  color: #797979;
+  font-size: 16px;
+}
+
+.olvidarContraseña {
+  padding-left: 20px;
+  margin-top: 20px;
+  color: #797979;
+  font-size: 16px;
+}
+
+.olvidarContraseñaSpan {
+  color: #4c00b4;
+  cursor: pointer;
+}
+
+.submitContainer {
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  padding-horizontal: 16px;
+  margin-top: -20px;
+}
+
+.submit {
+  justify-content: center;
+  align-items: center;
+  width: 50%;
+  height: 40px;
+  margin-top: 10px;
+  color: #fff;
+  background-color: #4c00b4;
+  border-radius: 20px;
+  font-size: 16px;
+  font-weight: 700;
+  cursor: pointer;
+  align-self: center;
+}
+
+.entrarContainer {
+  justify-content: center;
+  align-items: center;
+  width: 50%;
+  height: 40px;
+  margin-top: 10px;
+  color: #fff;
+  background-color: #4c00b4;
+  border-radius: 20px;
+  font-size: 16px;
+  font-weight: 700;
+  cursor: pointer;
+  align-self: center;
+}
+
+.videoContainer {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: -1;
+}
+
+.backgroundVideo {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
