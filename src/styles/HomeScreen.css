@@ -12,17 +12,28 @@
   position: relative;
 }
 
+.iconLogo {
+  display: flex;
+  justify-content: center; /* Centra horizontalmente */
+  align-items: center; /* Centra verticalmente */
+  width: 200px;
+  height: 200px;
+}
+
 .title {
   font-size: 24px;
   font-weight: bold;
   text-align: center;
+  margin-top: 75px;
 }
 
 .icon {
-  width: 150px;
-  height: 150px;
+  width: 200px;
+  height: auto;
   margin-top: 20px;
 }
+
+
 
 .headerLinksContainer {
   position: absolute;
@@ -116,6 +127,24 @@
   font-weight: bold;
 }
 
+.buttonContainer {
+  display: flex;
+  justify-content: flex-end; /* Alinea los elementos a la derecha */
+  align:center;
+}
+
+.loginButtons {
+  background-color: #007bff;
+  padding: 10px;
+  border-radius: 5px;
+  margin-right: 10px; /* Ajusta el margen derecho según sea necesario */
+  color: #fff;
+  font-weight: bold;
+  align:center;
+}
+5
+
 .selectedOption {
   background-color: #0056b3;
 }
+

@@ -36,6 +36,9 @@
   align-items: center;
 }
 
+
+
+
 .input {
   flex-direction: row;
   align-items: center;
@@ -53,6 +56,7 @@
   width: 18px;
   height: 18px;
 }
+
 
 .inputText {
   flex: 1;

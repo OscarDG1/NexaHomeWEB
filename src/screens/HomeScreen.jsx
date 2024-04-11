@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import '../styles/HomeScreen.css';
+import nexahomeLogo from '../assets/nexahome.png';
+import lupaIcon from '../assets/lupa.png';
 
 const HomeScreen = () => {
   const navigate = useNavigate();
@@ -55,9 +57,9 @@ const HomeScreen = () => {
       <div className="header">
         <h1 className="title">Bienvenidos a Nexahome</h1>
         <img
-          src={require('../assets/nexahome.png').default}
+          src={nexahomeLogo}
           alt="Nexahome Logo"
-          className="icon"
+          className="iconLogo"
         />
         <div className="headerLinksContainer">
           {loggedIn ? (
@@ -75,21 +77,27 @@ const HomeScreen = () => {
               )}
             </div>
           ) : (
-            <>
-              <button onClick={() => navigate('/loginRegistro', { state: { action: 'Login' } })}>
+            <div className="buttonContainer">
+              <button
+                className="loginButtons"
+                onClick={() => navigate('/loginRegistro', { state: { action: 'Login' } })}
+              >
                 Iniciar sesión
               </button>
-              <button onClick={() => navigate('/loginRegistro', { state: { action: 'Registro' } })}>
+              <button
+                className="loginButtons"
+                onClick={() => navigate('/loginRegistro', { state: { action: 'Registro' } })}
+              >
                 Registrarse
               </button>
-            </>
+            </div>
           )}
         </div>
       </div>
       <div className="content">
         <div className="searchBar">
           <img
-            src={require('../assets/lupa.png').default}
+            src={lupaIcon}
             alt="Buscar"
             className="searchIcon"
           />

@@ -4,6 +4,7 @@ import icono_email from '../assets/email.png';
 import icono_password from '../assets/password.png';
 import icono_telefono from '../assets/telefono.png'; //
 import LoginRegistroStyles from '../styles/LoginRegistro.css';
+import nexahomeLogo from '../assets/nexahome.png';
 
 const API_BASE_URL = 'https://127.0.0.1:7770';
 
