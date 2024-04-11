@@ -1,0 +1,150 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 50px;
+}
+
+.header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+}
+
+.iconLogo {
+  display: flex;
+  justify-content: center; /* Centra horizontalmente */
+  align-items: center; /* Centra verticalmente */
+  width: 200px;
+  height: 200px;
+}
+
+.title {
+  font-size: 24px;
+  font-weight: bold;
+  text-align: center;
+  margin-top: 75px;
+}
+
+.icon {
+  width: 200px;
+  height: auto;
+  margin-top: 20px;
+}
+
+
+
+.headerLinksContainer {
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin-top: 20px;
+  margin-right: 20px;
+}
+
+.headerLink {
+  background-color: #007bff;
+  padding: 10px 20px;
+  border-radius: 5px;
+  margin-left: 10px;
+  color: #fff;
+  font-weight: bold;
+}
+
+.dropdownContainer {
+  position: relative;
+}
+
+.dropdown {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  background-color: #fff;
+  border-radius: 4px;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.25);
+  z-index: 5;
+}
+
+.dropdownItem {
+  padding: 10px;
+  cursor: pointer;
+}
+
+.dropdownText {
+  color: #000;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.searchBar {
+  display: flex;
+  align-items: center;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 10px;
+  margin-top: 20px;
+}
+
+.searchIcon {
+  width: 20px;
+  height: 20px;
+  margin-right: 10px;
+}
+
+.searchInput {
+  flex: 1;
+  height: 40px;
+  padding: 0 10px;
+}
+
+.searchButton {
+  background-color: #007bff;
+  padding: 10px 20px;
+  border-radius: 5px;
+  margin-left: 10px;
+  color: #fff;
+  font-weight: bold;
+}
+
+.options {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.optionButton {
+  background-color: #007bff;
+  padding: 10px 20px;
+  border-radius: 5px;
+  margin: 0 10px;
+  color: #fff;
+  font-weight: bold;
+}
+
+.buttonContainer {
+  display: flex;
+  justify-content: flex-end; /* Alinea los elementos a la derecha */
+  align:center;
+}
+
+.loginButtons {
+  background-color: #007bff;
+  padding: 10px;
+  border-radius: 5px;
+  margin-right: 10px; /* Ajusta el margen derecho según sea necesario */
+  color: #fff;
+  font-weight: bold;
+  align:center;
+}
+5
+
+.selectedOption {
+  background-color: #0056b3;
+}
+
