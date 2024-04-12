@@ -11,7 +11,7 @@ function App() {
   return (
     <Router>
       <Routes>
-        {/* Esta ruta renderizará HomeScreen al iniciar el proyecto */}
+        {}
         <Route path="/" element={<HomeScreen />} />
         <Route path="/perfil" element={<PerfilScreen />} />
         <Route path="/loginRegistro" element={<LoginRegistro />} />
