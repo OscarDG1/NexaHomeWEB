@@ -36,10 +36,9 @@
   align-items: center;
 }
 
-
-
-
 .input {
+  display: flex; /* Agregado para centrar horizontalmente */
+  justify-content: center; /* Agregado para centrar horizontalmente */
   flex-direction: row;
   align-items: center;
   width: 100%;
@@ -51,12 +50,13 @@
   padding-left: 10px;
 }
 
+
 .icon {
-  margin-horizontal: 10px;
   width: 18px;
   height: 18px;
+  margin-right: 10px;
+  margin-top: -1px; /* Ajusta la posición vertical del icono */
 }
-
 
 .inputText {
   flex: 1;
@@ -67,18 +67,6 @@
   font-size: 16px;
 }
 
-.olvidarContraseña {
-  padding-left: 20px;
-  margin-top: 20px;
-  color: #797979;
-  font-size: 16px;
-}
-
-.olvidarContraseñaSpan {
-  color: #4c00b4;
-  cursor: pointer;
-}
-
 .submitContainer {
   flex-direction: column;
   align-items: center;
@@ -87,51 +75,54 @@
   margin-top: -20px;
 }
 
-.submit {
-  justify-content: center;
-  align-items: center;
-  width: 50%;
-  height: 40px;
-  margin-top: 10px;
-  color: #fff;
-  background-color: #4c00b4;
-  border-radius: 20px;
-  font-size: 16px;
-  font-weight: 700;
-  cursor: pointer;
-  align-self: center;
-}
-
-.entrarContainer {
-  justify-content: center;
-  align-items: center;
-  width: 50%;
-  height: 40px;
-  margin-top: 10px;
-  color: #fff;
-  background-color: #4c00b4;
-  border-radius: 20px;
-  font-size: 16px;
-  font-weight: 700;
-  cursor: pointer;
-  align-self: center;
-}
-
-.videoContainer {
+.video-background {
   position: absolute;
   top: 0;
-  right: 0;
-  bottom: 0;
   left: 0;
+  width: 100vw;
+  height: 100vh;
+  object-fit: cover;
+}
+
+.content-container {
+  position: relative;
+  z-index: 1;
+}
+
+.btn {
+  width: 6.5em;
+  height: 2.3em;
+  margin: 0.5em;
+  background: black;
+  color: white;
+  border: none;
+  border-radius: 0.625em;
+  font-size: 20px;
+  font-weight: bold;
+  cursor: pointer;
+  position: relative;
+  z-index: 1;
+  overflow: hidden;
+}
+
+button:hover {
+  color: black;
+}
+
+button:after {
+  content: "";
+  background: white;
+  position: absolute;
   z-index: -1;
+  left: -20%;
+  right: -20%;
+  top: 0;
+  bottom: 0;
+  transform: skewX(-45deg) scale(0, 1);
+  transition: all 0.5s;
 }
 
-.backgroundVideo {
-  position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
+button:hover:after {
+  transform: skewX(-45deg) scale(1, 1);
+  transition: all 0.5s;
 }

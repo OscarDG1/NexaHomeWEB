@@ -5,6 +5,7 @@ import icono_password from '../assets/password.png';
 import icono_telefono from '../assets/telefono.png'; //
 import LoginRegistroStyles from '../styles/LoginRegistro.css';
 import nexahomeLogo from '../assets/nexahome.png';
+import videoFondo from '../assets/MenuLogin.mp4'; // Importa el video de fondo
 
 const API_BASE_URL = 'https://127.0.0.1:7770';
 
@@ -88,6 +89,10 @@ const LoginRegistro = () => {
 
   return (
     <div className="container">
+      <video autoPlay muted loop className="video-background">
+        <source src={videoFondo} type="video/mp4" />
+        Your browser does not support the video tag.
+      </video>
       <div className="content-container">
         <div className="header">
           <h2 className="text">{action}</h2>
@@ -147,22 +152,22 @@ const LoginRegistro = () => {
 
         <div className="submitContainer">
           {action === 'Registro' && (
-            <button className="submit" onClick={handleRegistro}>
+            <button className="btn" onClick={handleRegistro}>
               Registrar
             </button>
           )}
           {action === 'Login' && (
-            <button className="submit" onClick={switchToRegistro}>
+            <button className="btn" onClick={switchToRegistro}>
               Registro
             </button>
           )}
           {action === 'Login' && (
-            <button className="submit entrarContainer" onClick={handleLogin}>
+            <button className="btn" onClick={handleLogin}>
               Entrar
             </button>
           )}
           {action !== 'Login' && (
-            <button className="submit" onClick={switchToLogin}>
+            <button className="btn" onClick={switchToLogin}>
               Login
             </button>
           )}
