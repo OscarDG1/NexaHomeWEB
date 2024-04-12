@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/nexahomereact.iml" filepath="$PROJECT_DIR$/.idea/nexahomereact.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/NexaHomeWeb.iml" filepath="$PROJECT_DIR$/.idea/NexaHomeWeb.iml" />
     </modules>
   </component>
 </project>
