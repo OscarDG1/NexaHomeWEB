@@ -1,63 +1,62 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import icono_usuario from '../assets/person.png';
 import icono_email from '../assets/email.png';
 import icono_password from '../assets/password.png';
-import icono_telefono from '../assets/telefono.png'; //
+import icono_telefono from '../assets/telefono.png';
 import LoginRegistroStyles from '../styles/LoginRegistro.css';
 import nexahomeLogo from '../assets/nexahome.png';
-import videoFondo from '../assets/MenuLogin.mp4'; // Importa el video de fondo
+import videoFondo from '../assets/MenuLogin.mp4';
 
-const API_BASE_URL = 'https://127.0.0.1:7770';
+const API_BASE_URL = 'http://192.168.58.116:7770';
 
 const LoginRegistro = () => {
   const [user, setUser] = useState({ name: '', email: '', password: '', telefono: '' });
   const [action, setAction] = useState('Registro');
-  const [username, setUsername] = useState('');
 
-  useEffect(() => {
-    getUsername();
-  }, []);
+ const handleRegistro = async () => {
+   try {
+     console.log('Datos enviados en la solicitud de registro:', {
+       name: user.name,
+       email: user.email,
+       passw: user.password,
+       phone: user.telefono
+     });
 
-  const getUsername = async () => {
-    try {
-      const response = await fetch(`${API_BASE_URL}/users`);
-      if (!response.ok) {
-        throw new Error('Failed to fetch username');
-      }
-      const data = await response.json();
-      setUsername(data.username);
-    } catch (error) {
-      console.error('Error fetching username:', error);
-    }
-  };
+     const response = await fetch(`${API_BASE_URL}/register`, {
+       method: 'POST',
+       headers: {
+         'Content-Type': 'application/json',
+       },
+       body: JSON.stringify({
+         name: user.name,
+         email: user.email,
+         passw: user.password,
+         phone: user.telefono
+       }),
+     });
 
-  const handleRegistro = async () => {
-    try {
-      const response = await fetch(`${API_BASE_URL}/register`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(user),
-      });
-      if (!response.ok) {
-        throw new Error('Failed to register user');
-      }
-      alert('Registro exitoso');
-    } catch (error) {
-      console.error('Error al registrar el usuario:', error);
-      alert('Error al realizar el registro. Por favor, inténtalo de nuevo.');
-    }
-  };
+     if (!response.ok) {
+       throw new Error('Failed to register user');
+     }
+
+     alert('Registro exitoso');
+   } catch (error) {
+     console.error('Error al registrar el usuario:', error);
+     alert('Error al realizar el registro. Por favor, inténtalo de nuevo.');
+   }
+ };
 
   const handleLogin = async () => {
     try {
       const response = await fetch(`${API_BASE_URL}/login`, {
-        method: 'GET',
+        method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(user),
+        body: JSON.stringify({
+          email: user.email,
+          password: user.password
+        }),
       });
       if (!response.ok) {
         throw new Error('Failed to log in');
@@ -65,7 +64,7 @@ const LoginRegistro = () => {
       const data = await response.json();
       if (data.token) {
         alert('Inicio de sesión exitoso');
-        // Redireccionar a otra página
+
       } else {
         alert('Credenciales incorrectas');
       }
@@ -74,6 +73,7 @@ const LoginRegistro = () => {
       alert('Error al iniciar sesión. Por favor, inténtalo de nuevo.');
     }
   };
+
 
   const handleChange = (field, value) => {
     setUser({ ...user, [field]: value });
