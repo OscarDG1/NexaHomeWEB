@@ -7,7 +7,7 @@ import LoginRegistroStyles from '../styles/LoginRegistro.css';
 import nexahomeLogo from '../assets/nexahome.png';
 import videoFondo from '../assets/MenuLogin.mp4';
 
-//
+//a
 
 const API_BASE_URL = 'http://192.168.58.116:7770';
 
