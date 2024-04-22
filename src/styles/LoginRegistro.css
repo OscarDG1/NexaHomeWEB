@@ -36,7 +36,7 @@
   align-items: center;
 }
 
-.input {
+.inputz {
   display: flex; /* Agregado para centrar horizontalmente */
   justify-content: center; /* Agregado para centrar horizontalmente */
   flex-direction: row;

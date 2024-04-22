@@ -3,11 +3,9 @@ import icono_usuario from '../assets/person.png';
 import icono_email from '../assets/email.png';
 import icono_password from '../assets/password.png';
 import icono_telefono from '../assets/telefono.png';
-import LoginRegistroStyles from '../styles/LoginRegistro.css';
+import '../styles/LoginRegistro.css';
 import nexahomeLogo from '../assets/nexahome.png';
 import videoFondo from '../assets/MenuLogin.mp4';
-
-// a
 
 const API_BASE_URL = 'http://192.168.58.116:7770';
 
@@ -103,7 +101,7 @@ const LoginRegistro = () => {
 
         <div className="inputs">
           {action === 'Login' ? null : (
-            <div className="input">
+            <div className="inputz">
               <img src={icono_usuario} className="icon" alt="icono usuario" />
               <input
                 type="text"
@@ -114,7 +112,7 @@ const LoginRegistro = () => {
               />
             </div>
           )}
-          <div className="input">
+          <div className="inputz">
             <img src={icono_email} className="icon" alt="icono email" />
             <input
               type="email"
@@ -124,7 +122,7 @@ const LoginRegistro = () => {
               onChange={(event) => handleChange('email', event.target.value)}
             />
           </div>
-          <div className="input">
+          <div className="inputz">
             <img src={icono_password} className="icon" alt="icono contraseña" />
             <input
               type="password"
@@ -135,7 +133,7 @@ const LoginRegistro = () => {
             />
           </div>
           {action === 'Registro' && (
-            <div className="input">
+            <div className="inputz">
               <img src={icono_telefono} className="icon" alt="icono teléfono" />
               <input
                 type="tel"

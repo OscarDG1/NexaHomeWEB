@@ -4,7 +4,17 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e141208e-92b4-44dd-9a15-c2495012da98" name="Changes" comment="loginRegistro cambiado" />
+    <list default="true" id="e141208e-92b4-44dd-9a15-c2495012da98" name="Changes" comment="PropiedadForm">
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/App.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/screens/LoginRegistro.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/LoginRegistro.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/screens/PropiedadForm.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/PropiedadForm.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/styles/LoginRegistro.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/styles/LoginRegistro.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/styles/Propiedad.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/styles/Propiedad.css" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -205,6 +215,7 @@
     <MESSAGE value="a" />
     <MESSAGE value="login" />
     <MESSAGE value="loginRegistro cambiado" />
-    <option name="LAST_COMMIT_MESSAGE" value="loginRegistro cambiado" />
+    <MESSAGE value="PropiedadForm" />
+    <option name="LAST_COMMIT_MESSAGE" value="PropiedadForm" />
   </component>
 </project>
