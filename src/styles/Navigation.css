@@ -1,0 +1,19 @@
+.navigation-bar {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  background-color: #f0f0f0;
+  padding: 10px;
+}
+
+.nav-link {
+  text-decoration: none;
+  color: black;
+  font-weight: bold;
+  padding: 5px 10px;
+}
+
+.nav-link:hover {
+  background-color: #ddd;
+  border-radius: 5px;
+}

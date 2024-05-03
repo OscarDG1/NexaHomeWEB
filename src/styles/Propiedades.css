@@ -1,0 +1,80 @@
+.property-list {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Centra los elementos horizontalmente */
+  justify-content: center; /* Centra los elementos verticalmente */
+}
+
+.property-card {
+  margin-bottom: 20px; /* Espacio entre las tarjetas */
+}
+
+.property-image-container {
+  position: relative;
+}
+
+.property-image {
+  max-width: 100%;
+}
+
+.property-details {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Centra los detalles horizontalmente */
+  text-align: center; /* Centra el texto */
+}
+
+.property-price {
+  font-weight: bold;
+}
+
+.price-bold {
+  font-weight: bold;
+}
+
+.contact-button.btn {
+  width: auto; /* Anchura automática para ajustarse al contenido */
+  height: 2.3em;
+  margin: 0.5em;
+  background: black;
+  color: white;
+  border: none;
+  border-radius: 0.625em;
+  font-size: 20px;
+  font-weight: bold;
+  cursor: pointer;
+  position: relative;
+  z-index: 1;
+  overflow: hidden;
+}
+
+.button.btn-container {
+  display: flex;
+  align-items: center; /* Alinea los elementos verticalmente */
+}
+
+button.btn:hover {
+  color: blue;
+}
+
+button:after {
+  content: "";
+  background: white;
+  position: absolute;
+  z-index: -1;
+  left: -20%;
+  right: -20%;
+  top: 0;
+  bottom: 0;
+  transform: skewX(-45deg) scale(0, 1);
+  transition: all 0.5s;
+}
+
+button:hover:after {
+  transform: skewX(-45deg) scale(1, 1);
+  transition: all 0.5s;
+}
+
+.property-meters {
+  margin-top: 10px; /* Añade margen arriba para separar los metros cuadrados de la imagen */
+}

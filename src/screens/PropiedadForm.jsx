@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
-import '../styles/Propiedad.css';
+ import { useNavigate } from 'react-router-dom'; // Importa useNavigate para acceder a la navegación programática
+ import '../styles/PropiedadForm.css';
+ import NavigationBar from './NavigationBar';
 
-function PropiedadForm() {
+ function PropiedadForm() {
+   const navigate = useNavigate();
   const [propiedad, setPropiedad] = useState({
-    correo: '',
-    metroscuadrados: 0,
-    habitaciones: 0,
-    baños: 0,
+    metrosCuadrados: 0,
     ciudad: '',
     provincia: '',
     calle: '',
@@ -15,12 +15,17 @@ function PropiedadForm() {
     estado: '',
     parking: false,
     piscina: false,
-    tipopropiedad: '',
+    tipoPropiedad: '',
     planta: 0,
     descripcion: '',
+    habitacion: '',
+    bano: '',
     orientacion: '',
-    ascensor: false
+    ascensor: false,
+    imagePath: []
   });
+
+  const API_BASE_URL = 'http://192.168.64.116:7770';
 
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
@@ -28,9 +33,38 @@ function PropiedadForm() {
     setPropiedad({ ...propiedad, [name]: newValue });
   };
 
+  const logDataToJson = () => {
+    console.log('Datos de la propiedad en formato JSON:');
+    console.log(JSON.stringify(propiedad, null, 2));
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    logDataToJson();
+    try {
+      const response = await fetch(`${API_BASE_URL}/property`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(propiedad),
+      });
+
+      if (!response.ok) {
+        throw new Error('Error al guardar la propiedad');
+      }
+
+      alert('Propiedad guardada exitosamente');
+      history.push('/');
+    } catch (error) {
+      console.error('Error al guardar la propiedad:', error);
+      alert('Error al guardar la propiedad. Por favor, inténtalo de nuevo.');
+    }
+  };
+
   const renderTipoPropiedadOptions = () => {
     return (
-      <select name="tipopropiedad" value={propiedad.tipopropiedad} onChange={handleChange} className="inputt">
+      <select name="tipoPropiedad" value={propiedad.tipoPropiedad} onChange={handleChange} className="inputt">
         <option value="">Seleccionar tipo de propiedad</option>
         <option value="casa">Casa</option>
         <option value="piso">Piso</option>
@@ -67,13 +101,23 @@ function PropiedadForm() {
     );
   };
 
-
   return (
-    <form className="form">
+    <div>
+      <NavigationBar />
+      <form className="form" onSubmit={handleSubmit}>
+        <div className="group">
+          <div className="input-wrapper">
+            <input type="number" className="inputt" name="metrosCuadrados" value={propiedad.metrosCuadrados} onChange={handleChange} required />
+            <label className={propiedad.metrosCuadrados ? 'input-label input-label-up' : 'input-label'}>Metros Cuadrados</label>
+            <span className="highlight"></span>
+            <span className="bar"></span>
+          </div>
+        </div>
+
       <div className="group">
         <div className="input-wrapper">
-          <input type="text" className="inputt" name="correo" value={propiedad.correo} onChange={handleChange} required />
-          <label className={propiedad.correo ? 'input-label input-label-up' : 'input-label'}>Correo</label>
+          <input type="number" className="inputt" name="habitacion" value={propiedad.habitacion} onChange={handleChange} required />
+          <label className={propiedad.habitacion ? 'input-label input-label-up' : 'input-label'}>Habitaciones</label>
           <span className="highlight"></span>
           <span className="bar"></span>
         </div>
@@ -81,26 +125,8 @@ function PropiedadForm() {
 
       <div className="group">
         <div className="input-wrapper">
-          <input type="number" className="inputt" name="metroscuadrados" value={propiedad.metroscuadrados} onChange={handleChange} required />
-          <label className={propiedad.metroscuadrados ? 'input-label input-label-up' : 'input-label'}>Metros Cuadrados</label>
-          <span className="highlight"></span>
-          <span className="bar"></span>
-        </div>
-      </div>
-
-      <div className="group">
-        <div className="input-wrapper">
-          <input type="number" className="inputt" name="habitaciones" value={propiedad.habitaciones} onChange={handleChange} required />
-          <label className={propiedad.habitaciones ? 'input-label input-label-up' : 'input-label'}>Habitaciones</label>
-          <span className="highlight"></span>
-          <span className="bar"></span>
-        </div>
-      </div>
-
-      <div className="group">
-        <div className="input-wrapper">
-          <input type="number" className="inputt" name="baños" value={propiedad.baños} onChange={handleChange} required />
-          <label className={propiedad.baños ? 'input-label input-label-up' : 'input-label'}>Baños</label>
+          <input type="number" className="inputt" name="bano" value={propiedad.bano} onChange={handleChange} required />
+          <label className={propiedad.bano ? 'input-label input-label-up' : 'input-label'}>Baños</label>
           <span className="highlight"></span>
           <span className="bar"></span>
         </div>
@@ -171,40 +197,42 @@ function PropiedadForm() {
         {renderTipoPropiedadOptions()}
       </div>
 
-      {propiedad.tipopropiedad === 'piso' && (
+      {propiedad.tipoPropiedad === 'piso' && (
         <div className="group">
           <input type="checkbox" name="ascensor" checked={propiedad.ascensor} onChange={handleChange} className="inputt" />
           <label>Ascensor</label>
         </div>
       )}
 
-        <div className="group">
-              <div className="input-wrapper">
-                <input type="number" className="inputt" name="plantas" value={propiedad.plantas} onChange={handleChange} required />
-                <label className={propiedad.plantas ? 'input-label input-label-up' : 'input-label'}>Plantas</label>
-                <span className="highlight"></span>
-                <span className="bar"></span>
-              </div>
-            </div>
-       <div className="group">
-              <div className="input-wrapper">
-                <input type="textarea" className="inputt" name="descripcion" value={propiedad.descripcion} onChange={handleChange} required />
-                <label className={propiedad.descripcion ? 'input-label input-label-up' : 'input-label'}>Descripción</label>
-                <span className="highlight"></span>
-                <span className="bar"></span>
-              </div>
-            </div>
+      <div className="group">
+        <div className="input-wrapper">
+          <input type="number" className="inputt" name="planta" value={propiedad.planta} onChange={handleChange} required />
+          <label className={propiedad.planta ? 'input-label input-label-up' : 'input-label'}>Planta</label>
+          <span className="highlight"></span>
+          <span className="bar"></span>
+        </div>
+      </div>
+
+      <div className="group">
+        <div className="input-wrapper">
+          <textarea className="inputt" name="descripcion" value={propiedad.descripcion} onChange={handleChange} required />
+          <label className={propiedad.descripcion ? 'input-label input-label-up' : 'input-label'}>Descripción</label>
+          <span className="highlight"></span>
+          <span className="bar"></span>
+        </div>
+      </div>
 
       <div className="group">
         <label>Orientación</label>
         {renderOrientacionOptions()}
       </div>
 
-      <div className="group">
-        <button type="submit">Registrar Propiedad</button>
-      </div>
-    </form>
-  );
-}
+       <div className="group">
+              <button type="submit">Registrar Propiedad</button>
+            </div>
+          </form>
+        </div>
+      );
+    }
 
 export default PropiedadForm;

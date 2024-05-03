@@ -36,7 +36,7 @@ const LoginRegistro = () => {
      });
 
      if (!response.ok) {
-       throw new Error('Failed to register user');
+       throw new Error('Error al registrar el usuario');
      }
 
      alert('Registro exitoso');
@@ -59,7 +59,7 @@ const LoginRegistro = () => {
         }),
       });
       if (!response.ok) {
-        throw new Error('Failed to log in');
+        throw new Error('Error al iniciar sesión');
       }
       const data = await response.json();
       if (data.token) {
@@ -91,7 +91,6 @@ const LoginRegistro = () => {
     <div className="container">
       <video autoPlay muted loop className="video-background">
         <source src={videoFondo} type="video/mp4" />
-        Your browser does not support the video tag.
       </video>
       <div className="content-container">
         <div className="header">

@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import '../styles/HomeScreen.css';
 import nexahomeLogo from '../assets/nexahome.png';
 import lupaIcon from '../assets/lupa.png';
+import NavigationBar from './NavigationBar';
 
 const HomeScreen = () => {
   const navigate = useNavigate();
@@ -53,48 +54,26 @@ const HomeScreen = () => {
   };
 
   return (
-    <div className="container">
-      <div className="header">
-        <h1 className="title">Bienvenidos a Nexahome</h1>
-        <img
-          src={nexahomeLogo}
-          alt="Nexahome Logo"
-          className="iconLogo"
-        />
-        <div className="headerLinksContainer">
-          {loggedIn ? (
-            <div className="dropdownContainer">
-              <span className="headerLink">Bienvenido, {username}</span>
-              {selectedOption === 'Perfil' && (
-                <div className="dropdown">
-                  <div className="dropdownItem" onClick={() => handleOptionPress('Perfil')}>
-                    <span className="dropdownText">Perfil</span>
-                  </div>
-                  <div className="dropdownItem" onClick={handleLogout}>
-                    <span className="dropdownText">Cerrar sesión</span>
-                  </div>
-                </div>
-              )}
-            </div>
-          ) : (
-            <div className="buttonContainer">
-              <button
-                className="loginButtons"
-                onClick={() => navigate('/loginRegistro', { state: { action: 'Login' } })}
-              >
-                Iniciar sesión
-              </button>
-              <button
-                className="loginButtons"
-                onClick={() => navigate('/loginRegistro', { state: { action: 'Registro' } })}
-              >
-                Registrarse
-              </button>
-            </div>
-          )}
+    <div>
+      <NavigationBar />
+      <div className="container">
+        <div className="header">
+          <h1 className="title">Bienvenidos a NexaHome</h1>
+          <img
+            src={nexahomeLogo}
+            alt="Nexahome Logo"
+            className="iconLogo"
+          />
+          <div className="headerLinksContainer">
+            {loggedIn && (
+              <div className="dropdownContainer">
+                <span className="headerLink">Bienvenido, {username}</span>
+                <button className="headerLink" onClick={() => handleOptionPress('Perfil')}>Perfil</button>
+                <button className="headerLink" onClick={handleLogout}>Cerrar sesión</button>
+              </div>
+            )}
+          </div>
         </div>
-      </div>
-      <div className="content">
         <div className="searchBar">
           <img
             src={lupaIcon}
