@@ -8,7 +8,7 @@
     import videoFondo from '../assets/MenuLogin.mp4';
 import { useNavigate } from 'react-router-dom';
 
-    const API_BASE_URL = 'http://192.168.94.116:7771';
+    const API_BASE_URL = 'https://192.168.94.116:7770';
 
     const LoginRegistro = () => {
       const [user, setUser] = useState({ name: '', email: '', password: '', telefono: '' });
@@ -57,7 +57,7 @@ import { useNavigate } from 'react-router-dom';
             },
             body: JSON.stringify({
               email: user.email,
-              password: user.password
+              passw: user.password
             }),
           });
           if (!response.ok) {

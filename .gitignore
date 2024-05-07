@@ -1,3 +1,10 @@
 node_modules/
 .idea/shelf/Uncommitted_changes_before_Update_at_16_04_2024_16_31_[Changes]/
 .idea/shelf/Uncommitted_changes_before_Update_at_12_04_2024_17_37_[Changes]/
+
+# Ignorar todos los archivos .env
+*.env
+
+# Ignorar todas las carpetas 'certs' y su contenido
+certs/
+
