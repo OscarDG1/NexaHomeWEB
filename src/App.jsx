@@ -6,10 +6,9 @@ import PerfilScreen from './screens/PerfilScreen';
 import LoginRegistro from './screens/LoginRegistro';
 import PropiedadForm from './screens/PropiedadForm';
 import Propiedades from './screens/Propiedades';
+import SocialMediaPage from './screens/SocialMediaPage';
 
 function App() {
-  console.log("La función App está siendo llamada");
-
   return (
      <Router>
        <Routes>
@@ -18,6 +17,7 @@ function App() {
          <Route path="/buscar" element={<HomeScreen />} />
          <Route path="/propiedadForm" element={<PropiedadForm />} />
          <Route path="/propiedades" element={<Propiedades />} />
+         <Route path="/socialMedia" element={<SocialMediaPage />} />
        </Routes>
      </Router>
    );

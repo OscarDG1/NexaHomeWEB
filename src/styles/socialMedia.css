@@ -1,0 +1,27 @@
+.social-media-icons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.social-media-icons a {
+  margin: 0 10px; /* Espacio entre los iconos */
+  cursor: pointer;
+  text-align: center;
+}
+
+.social-media-icons a img {
+  width: 300px; /* Ajusta según necesites */
+  height: 300px; /* Ajusta según necesites */
+}
+
+.social-media-label {
+  text-align: center; /* Alinea el texto al centro */
+  font-size: 26px; /* Tamaño de la fuente */
+  font-weight: bold; /* Peso de la fuente */
+}
+
+.social-media-icons {
+  margin-top: 100px; /* Ajusta el valor del margen superior según sea necesario */
+}
+

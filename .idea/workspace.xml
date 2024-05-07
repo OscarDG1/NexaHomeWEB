@@ -5,21 +5,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e141208e-92b4-44dd-9a15-c2495012da98" name="Changes" comment="ProepiedadPlantilla + cambios">
-      <change afterPath="$PROJECT_DIR$/src/assets/bano.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/assets/habitacion.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/assets/propiedad.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/assets/superficie.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/styles/Perfil.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/assets/instagram.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/assets/tiktok.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/assets/twitter.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/screens/SocialMediaPage.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/styles/socialMedia.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/App.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/assets/lupa.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/assets/lupa.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/screens/NavigationBar.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/NavigationBar.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/screens/LoginRegistro.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/LoginRegistro.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/screens/PerfilScreen.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/PerfilScreen.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/screens/PropiedadForm.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/PropiedadForm.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/screens/Propiedades.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/Propiedades.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/styles/Navigation.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/styles/Navigation.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/styles/PropiedadForm.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/styles/PropiedadForm.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/styles/Propiedades.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/styles/Propiedades.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/styles/Perfil.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/styles/Perfil.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -61,22 +56,24 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
-    &quot;ASKED_MARK_IGNORED_FILES_AS_EXCLUDED&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.cidr.known.project.marker&quot;: &quot;true&quot;,
-    &quot;cf.first.check.clang-format&quot;: &quot;false&quot;,
-    &quot;cidr.known.project.marker&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
-    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;D:/AndroidStudioProjects/NexaHomeWEB/public&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;memory.settings&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_ADD_EXTERNAL_FILES": "true",
+    "ASKED_MARK_IGNORED_FILES_AS_EXCLUDED": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.cidr.known.project.marker": "true",
+    "cf.first.check.clang-format": "false",
+    "cidr.known.project.marker": "true",
+    "git-widget-placeholder": "master",
+    "ignore.virus.scanning.warn.message": "true",
+    "last_opened_file_path": "D:/AndroidStudioProjects/NexaHomeWEB/src/screens",
+    "settings.editor.selected.configurable": "preferences.fileTypes"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\AndroidStudioProjects\NexaHomeWEB\src\screens" />
+      <recent name="D:\AndroidStudioProjects\NexaHomeWEB\src" />
       <recent name="D:\AndroidStudioProjects\NexaHomeWEB\public" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
@@ -212,7 +209,15 @@
       <option name="project" value="LOCAL" />
       <updated>1714749348060</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="ProepiedadPlantilla + cambios">
+      <option name="closed" value="true" />
+      <created>1715092566203</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1715092566203</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
