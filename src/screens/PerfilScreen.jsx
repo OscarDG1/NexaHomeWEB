@@ -1,100 +1,83 @@
 import React, { useState, useEffect } from 'react';
+import '../styles/Perfil.css';
 
-const PerfilScreen = () => {
-  const [userData, setUserData] = useState({
-    username: '',
-    email: '',
-    password: '',
-  });
+const API_BASE_URL = 'http://192.168.58.116:7770'; // URL base de tu API
 
-  useEffect(() => {
-    // Lógica para obtener datos de usuario desde el servidor o almacenamiento local
-  }, []);
+const ProfileScreen = () => {
+  const [userProperties, setUserProperties] = useState([]);
+  const [newUsername, setNewUsername] = useState('');
+  const [newEmail, setNewEmail] = useState('');
+  const [currentPassword, setCurrentPassword] = useState('');
+  const [newPassword, setNewPassword] = useState('');
 
-  useEffect(() => {
-    // Lógica para guardar datos de usuario en el servidor o almacenamiento local
-  }, [userData]);
+  const handleEditProfile = async () => {
+    try {
+      const token = localStorage.getItem('token');
+      const response = await fetch(`${API_BASE_URL}/user/edit`, {
+        method: 'POST',
+        headers: {
+          'Authorization': `Bearer ${token}`,
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ newUsername, newEmail }),
+      });
 
-  const handleUsernameChange = (newUsername) => {
-    setUserData({ ...userData, username: newUsername });
+      if (!response.ok) {
+        throw new Error('Error al editar el perfil');
+      }
+
+      // Actualizar el estado o mostrar un mensaje de éxito
+    } catch (error) {
+      console.error('Error al editar el perfil:', error);
+      // Manejar errores aquí
+    }
   };
 
-  const handleEmailChange = (newEmail) => {
-    setUserData({ ...userData, email: newEmail });
-  };
+  const handleChangePassword = async () => {
+    try {
+      const token = localStorage.getItem('token');
+      const response = await fetch(`${API_BASE_URL}/user/change-password`, {
+        method: 'POST',
+        headers: {
+          'Authorization': `Bearer ${token}`,
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ currentPassword, newPassword }),
+      });
 
-  const handlePasswordChange = (newPassword) => {
-    setUserData({ ...userData, password: newPassword });
-  };
+      if (!response.ok) {
+        throw new Error('Error al cambiar la contraseña');
+      }
 
-  const handleChooseAvatar = () => {
-    // Lógica para permitir al usuario seleccionar una imagen de perfil
-  };
-
-  const handleSaveChanges = () => {
-    // Lógica para guardar los cambios en los datos del usuario
+      // Actualizar el estado o mostrar un mensaje de éxito
+    } catch (error) {
+      console.error('Error al cambiar la contraseña:', error);
+      // Manejar errores aquí
+    }
   };
 
   return (
-    <div style={styles.container}>
-      <h1 style={styles.title}>Perfil de Usuario</h1>
-      <img
-        src={userData.avatar}
-        alt="Avatar"
-        style={styles.avatar}
-      />
-      <button onClick={handleChooseAvatar}>Cambiar Imagen</button>
-      <input
-        type="text"
-        placeholder="Nombre de usuario"
-        value={userData.username}
-        onChange={(e) => handleUsernameChange(e.target.value)}
-        style={styles.input}
-      />
-      <input
-        type="email"
-        placeholder="Correo electrónico"
-        value={userData.email}
-        onChange={(e) => handleEmailChange(e.target.value)}
-        style={styles.input}
-      />
-      <input
-        type="password"
-        placeholder="Contraseña"
-        value={userData.password}
-        onChange={(e) => handlePasswordChange(e.target.value)}
-        style={styles.input}
-      />
-      <button onClick={handleSaveChanges}>Guardar Cambios</button>
+    <div className="profile-screen">
+      <h2>Tus propiedades</h2>
+      <div className="user-properties">
+        {/* Renderizar propiedades aquí */}
+      </div>
+
+      <div className="edit-profile-form">
+        <h3>Editar perfil</h3>
+        <input type="text" value={newUsername} onChange={(e) => setNewUsername(e.target.value)} placeholder="Nuevo nombre de usuario" />
+        <input type="email" value={newEmail} onChange={(e) => setNewEmail(e.target.value)} placeholder="Nuevo correo electrónico" />
+        <button onClick={handleEditProfile}>Guardar cambios</button>
+      </div>
+
+      <div className="change-password-form">
+        <h3>Cambiar contraseña</h3>
+        <input type="password" value={currentPassword} onChange={(e) => setCurrentPassword(e.target.value)} placeholder="Contraseña actual" />
+        <input type="password" value={newPassword} onChange={(e) => setNewPassword(e.target.value)} placeholder="Nueva contraseña" />
+        <button onClick={handleChangePassword}>Cambiar contraseña</button>
+      </div>
     </div>
   );
 };
 
-const styles = {
-  container: {
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  title: {
-    fontSize: 20,
-    fontWeight: 'bold',
-    marginBottom: 20,
-  },
-  input: {
-    width: '80%',
-    height: 40,
-    border: '1px solid gray',
-    marginBottom: 20,
-    padding: '0 10px',
-  },
-  avatar: {
-    width: 150,
-    height: 150,
-    borderRadius: 75,
-    marginBottom: 20,
-  },
-};
-
-export default PerfilScreen;
+export default ProfileScreen;

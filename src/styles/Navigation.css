@@ -17,3 +17,25 @@
   background-color: #ddd;
   border-radius: 5px;
 }
+
+.logo {
+  width: 50px;
+  height: auto;
+}
+
+
+.logo-container {
+  display: flex;
+  align-items: center; /* Centra verticalmente los elementos */
+}
+
+.icon-text-container {
+  display: flex;
+  align-items: center;
+}
+
+
+.logo-text {
+  margin-left: 10px; /* Ajusta el margen izquierdo según sea necesario */
+  font-size: 14px; /* Establece el tamaño del texto según tus preferencias */
+}

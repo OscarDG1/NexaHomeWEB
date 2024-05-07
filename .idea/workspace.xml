@@ -4,19 +4,22 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e141208e-92b4-44dd-9a15-c2495012da98" name="Changes" comment="PropiedadForm">
-      <change afterPath="$PROJECT_DIR$/src/assets/casa.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/screens/NavigationBar.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/screens/Propiedades.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/styles/Navigation.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/styles/Propiedades.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    <list default="true" id="e141208e-92b4-44dd-9a15-c2495012da98" name="Changes" comment="ProepiedadPlantilla + cambios">
+      <change afterPath="$PROJECT_DIR$/src/assets/bano.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/assets/habitacion.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/assets/propiedad.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/assets/superficie.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/styles/Perfil.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/App.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/screens/HomeScreen.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/HomeScreen.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/screens/LoginRegistro.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/LoginRegistro.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/assets/lupa.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/assets/lupa.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/screens/NavigationBar.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/NavigationBar.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/screens/PerfilScreen.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/PerfilScreen.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/screens/PropiedadForm.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/PropiedadForm.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/styles/Propiedad.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/styles/PropiedadForm.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/screens/Propiedades.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/Propiedades.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/styles/Navigation.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/styles/Navigation.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/styles/PropiedadForm.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/styles/PropiedadForm.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/styles/Propiedades.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/styles/Propiedades.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -201,7 +204,15 @@
       <option name="project" value="LOCAL" />
       <updated>1713309034884</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="ProepiedadPlantilla + cambios">
+      <option name="closed" value="true" />
+      <created>1714749348060</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1714749348060</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -222,6 +233,7 @@
     <MESSAGE value="login" />
     <MESSAGE value="loginRegistro cambiado" />
     <MESSAGE value="PropiedadForm" />
-    <option name="LAST_COMMIT_MESSAGE" value="PropiedadForm" />
+    <MESSAGE value="ProepiedadPlantilla + cambios" />
+    <option name="LAST_COMMIT_MESSAGE" value="ProepiedadPlantilla + cambios" />
   </component>
 </project>

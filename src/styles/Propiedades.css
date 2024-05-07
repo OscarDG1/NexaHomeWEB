@@ -1,12 +1,14 @@
 .property-list {
   display: flex;
   flex-direction: column;
-  align-items: center; /* Centra los elementos horizontalmente */
-  justify-content: center; /* Centra los elementos verticalmente */
+  align-items: flex-start;
+  justify-content: center;
+  margin-left: 250px;
 }
 
 .property-card {
-  margin-bottom: 20px; /* Espacio entre las tarjetas */
+  display: flex;
+  margin-bottom: 70px; /* Espacio entre las tarjetas */
 }
 
 .property-image-container {
@@ -19,13 +21,35 @@
 
 .property-details {
   display: flex;
+  align-items: flex-start; /* Alinea los detalles a la izquierda */
+  margin-left: 10px; /* Espacio entre la imagen y los detalles */
+}
+
+.property-icon {
+  width: 30px; /* Ajusta el tamaño de los iconos según sea necesario */
+  height: 30px;
+  margin-right: 5px; /* Espacio entre el icono y el texto */
+}
+
+.property-texts {
+  display: flex;
   flex-direction: column;
-  align-items: center; /* Centra los detalles horizontalmente */
-  text-align: center; /* Centra el texto */
+  align-items: flex-start; /* Alinea los textos a la izquierda */
+  margin-left: 10px; /* Espacio entre los textos y la imagen */
 }
 
 .property-price {
   font-weight: bold;
+  font-size: 3em; /* Tamaño del precio ajustado según sea necesario */
+  color: gray;
+}
+
+.property-meters,
+.property-bedrooms,
+.property-bathrooms {
+  display: flex;
+  align-items: center; /* Alinea los textos verticalmente */
+  margin-bottom: 10px; /* Ajusta el valor según sea necesario */
 }
 
 .price-bold {
@@ -46,6 +70,7 @@
   position: relative;
   z-index: 1;
   overflow: hidden;
+  bottom: -125px;
 }
 
 .button.btn-container {
@@ -73,8 +98,4 @@ button:after {
 button:hover:after {
   transform: skewX(-45deg) scale(1, 1);
   transition: all 0.5s;
-}
-
-.property-meters {
-  margin-top: 10px; /* Añade margen arriba para separar los metros cuadrados de la imagen */
 }
