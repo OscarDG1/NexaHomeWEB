@@ -7,6 +7,8 @@ import LoginRegistro from './screens/LoginRegistro';
 import PropiedadForm from './screens/PropiedadForm';
 import Propiedades from './screens/Propiedades';
 import SocialMediaPage from './screens/SocialMediaPage';
+import ChangePassword from './screens/change-password';
+
 
 function App() {
   return (
@@ -18,6 +20,7 @@ function App() {
          <Route path="/propiedadForm" element={<PropiedadForm />} />
          <Route path="/propiedades" element={<Propiedades />} />
          <Route path="/socialMedia" element={<SocialMediaPage />} />
+         <Route path="/change-password" element={<ChangePassword/>} />
        </Routes>
      </Router>
    );

@@ -4,17 +4,8 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e141208e-92b4-44dd-9a15-c2495012da98" name="Changes" comment="ProepiedadPlantilla + cambios">
-      <change afterPath="$PROJECT_DIR$/src/assets/instagram.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/assets/tiktok.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/assets/twitter.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/screens/SocialMediaPage.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/styles/socialMedia.css" afterDir="false" />
+    <list default="true" id="e141208e-92b4-44dd-9a15-c2495012da98" name="Changes" comment="Creando Perfil, Redes Sociales,Cerrar sesion funcionando navigationBAR añadido">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/App.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/screens/LoginRegistro.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/LoginRegistro.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/screens/PerfilScreen.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/PerfilScreen.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/styles/Perfil.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/styles/Perfil.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -217,7 +208,15 @@
       <option name="project" value="LOCAL" />
       <updated>1715092566203</updated>
     </task>
-    <option name="localTasksCounter" value="17" />
+    <task id="LOCAL-00017" summary="Creando Perfil, Redes Sociales,Cerrar sesion funcionando navigationBAR añadido">
+      <option name="closed" value="true" />
+      <created>1715106275328</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1715106275330</updated>
+    </task>
+    <option name="localTasksCounter" value="18" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -239,6 +238,7 @@
     <MESSAGE value="loginRegistro cambiado" />
     <MESSAGE value="PropiedadForm" />
     <MESSAGE value="ProepiedadPlantilla + cambios" />
-    <option name="LAST_COMMIT_MESSAGE" value="ProepiedadPlantilla + cambios" />
+    <MESSAGE value="Creando Perfil, Redes Sociales,Cerrar sesion funcionando navigationBAR añadido" />
+    <option name="LAST_COMMIT_MESSAGE" value="Creando Perfil, Redes Sociales,Cerrar sesion funcionando navigationBAR añadido" />
   </component>
 </project>
