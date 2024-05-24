@@ -1,120 +1,93 @@
 .property-list {
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
+  align-items: center;
   justify-content: center;
-  margin-left: 250px;
+  margin-left: 0;
+  padding: 0 20px;
 }
 
 .property-card {
   display: flex;
-  margin-bottom: 70px; /* Espacio entre las tarjetas */
+  flex-direction: column;
+  width: 100%;
+  max-width: 500px;
+  margin-bottom: 20px;
+  border: 1px solid #ddd;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  overflow: hidden;
+  background: #fff;
 }
 
 .property-image-container {
-  position: relative;
+  width: 100%;
+  height: auto;
+  overflow: hidden;
 }
 
 .property-image {
-  max-width: 100%;
+  width: 100%;
+  height: auto;
+  object-fit: cover;
 }
 
 .property-details {
   display: flex;
-  align-items: flex-start; /* Alinea los detalles a la izquierda */
-  margin-left: 10px; /* Espacio entre la imagen y los detalles */
+  flex-direction: column;
+  padding: 15px;
 }
 
 .property-icon {
-  width: 30px; /* Ajusta el tamaño de los iconos según sea necesario */
-  height: 30px;
-  margin-right: 5px; /* Espacio entre el icono y el texto */
+  width: 24px;
+  height: 24px;
+  margin-right: 10px;
 }
 
 .property-texts {
   display: flex;
   flex-direction: column;
-  align-items: flex-start; /* Alinea los textos a la izquierda */
-  margin-left: 10px; /* Espacio entre los textos y la imagen */
+  align-items: flex-start;
+  margin-bottom: 10px;
 }
 
 .property-price {
   font-weight: bold;
-  font-size: 3em; /* Tamaño del precio ajustado según sea necesario */
+  font-size: 2em;
   color: gray;
+  margin-bottom: 10px;
 }
 
 .property-meters,
 .property-bedrooms,
 .property-bathrooms {
   display: flex;
-  align-items: center; /* Alinea los textos verticalmente */
-  margin-bottom: 10px; /* Ajusta el valor según sea necesario */
+  align-items: center;
+  margin-bottom: 10px;
 }
 
 .price-bold {
   font-weight: bold;
 }
 
-.modal {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  right: auto;
-  bottom: auto;
-  transform: translate(-50%, -50%);
-  background: white;
-  padding: 20px;
-  border-radius: 4px;
-  outline: none;
-  width: 50%;
-  max-width: 500px;
-}
-
-.modal-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: rgba(0, 0, 0, 0.75);
-  z-index: 1000;
-}
-
-.property-image-container {
-  position: relative;
-}
-
-.property-image-container:hover {
-  cursor: pointer;
-}
-
-
-
-
 .contact-button.btn {
-  width: auto; /* Anchura automática para ajustarse al contenido */
-  height: 2.3em;
-  margin: 0.5em;
+  width: 100%;
+  padding: 10px;
   background: black;
   color: white;
   border: none;
   border-radius: 0.625em;
-  font-size: 20px;
+  font-size: 16px;
   font-weight: bold;
   cursor: pointer;
+  margin-top: 10px;
   position: relative;
   z-index: 1;
   overflow: hidden;
-  bottom: -125px;
+  text-align: center;
 }
 
-.button.btn-container {
-  display: flex;
-  align-items: center; /* Alinea los elementos verticalmente */
-}
-
-button.btn:hover {
+.contact-button.btn:hover {
   color: blue;
 }
 
@@ -134,4 +107,52 @@ button:after {
 button:hover:after {
   transform: skewX(-45deg) scale(1, 1);
   transition: all 0.5s;
+}
+
+.modal {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  right: auto;
+  bottom: auto;
+  transform: translate(-50%, -50%);
+  background: white;
+  padding: 20px;
+  border-radius: 4px;
+  outline: none;
+  width: 90%;
+  max-width: 500px;
+}
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.75);
+  z-index: 1000;
+}
+
+@media (max-width: 768px) {
+  .property-card {
+    flex-direction: column;
+    margin: 0 auto 20px;
+  }
+
+  .property-details {
+    align-items: flex-start;
+  }
+
+  .property-image-container {
+    height: 200px;
+  }
+
+  .property-price {
+    font-size: 1.5em;
+  }
+
+  .contact-button.btn {
+    font-size: 16px;
+  }
 }

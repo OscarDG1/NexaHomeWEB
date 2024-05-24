@@ -1,5 +1,6 @@
 .form {
-  width: 400px;
+  width: 100%;
+  max-width: 400px;
   margin: auto;
   margin-top: 50px;
   padding: 20px;
@@ -12,16 +13,16 @@
   margin-bottom: 20px;
 }
 
-.group input[type="checkbox"]{
+.group input[type="checkbox"] {
   position: relative;
   top: 20px;
-   transform: scale(2);
+  transform: scale(1.5);
 }
-
 
 .input-wrapper {
   position: relative;
 }
+
 .inputt {
   font-size: 16px;
   padding: 10px 10px 10px 5px;
@@ -110,7 +111,7 @@
 }
 
 .image-preview {
-  width: 200px;
+  width: 100%;
   height: auto;
   margin-bottom: 10px;
 }
@@ -121,9 +122,9 @@
 }
 
 .contact-button.btn {
-  width: auto; /* Anchura automática para ajustarse al contenido */
+  width: 100%;
   height: 2.3em;
-  margin: 0.5em;
+  margin: 0.5em 0;
   background: black;
   color: white;
   border: none;
@@ -134,11 +135,12 @@
   position: relative;
   z-index: 1;
   overflow: hidden;
+  text-align: center;
 }
 
 .button.btn-container {
   display: flex;
-  align-items: center; /* Alinea los elementos verticalmente */
+  justify-content: center; /* Centra el botón horizontalmente */
 }
 
 button.btn:hover {
@@ -161,4 +163,48 @@ button:after {
 button:hover:after {
   transform: skewX(-45deg) scale(1, 1);
   transition: all 0.5s;
+}
+
+/* Media Queries para dispositivos móviles */
+@media (max-width: 768px) {
+  .form {
+    width: 90%;
+    padding: 15px;
+  }
+
+  .inputt {
+    font-size: 14px;
+    padding: 8px 8px 8px 4px;
+    width: calc(100% - 16px);
+  }
+
+  .input-label {
+    font-size: 14px;
+  }
+
+  .input-label-up {
+    font-size: 12px;
+  }
+
+  .contact-button.btn {
+    font-size: 16px;
+    padding: 10px;
+  }
+
+  .group input[type="checkbox"] {
+    transform: scale(1.2);
+    top: 10px;
+  }
+
+  .image-preview {
+    width: 100%;
+  }
+
+  .input-wrapper {
+    margin-bottom: 20px;
+  }
+
+  .button.btn-container {
+    justify-content: center;
+  }
 }

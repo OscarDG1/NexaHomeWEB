@@ -1,27 +1,76 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+  font-family: Arial, sans-serif;
+}
+
 .social-media-icons {
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-wrap: wrap;
+  margin-top: 50px;
+  padding: 0 10px;
+}
+
+.social-media-icon {
+  margin: 10px;
+  text-align: center;
 }
 
 .social-media-icons a {
-  margin: 0 10px; /* Espacio entre los iconos */
   cursor: pointer;
   text-align: center;
 }
 
 .social-media-icons a img {
-  width: 300px; /* Ajusta según necesites */
-  height: 300px; /* Ajusta según necesites */
+  width: 100px;
+  height: 100px;
 }
 
 .social-media-label {
-  text-align: center; /* Alinea el texto al centro */
-  font-size: 26px; /* Tamaño de la fuente */
-  font-weight: bold; /* Peso de la fuente */
+  text-align: center;
+  font-size: 16px;
+  font-weight: bold;
+  margin-top: 5px;
 }
 
-.social-media-icons {
-  margin-top: 100px; /* Ajusta el valor del margen superior según sea necesario */
+@media (min-width: 600px) {
+  .social-media-icons a img {
+    width: 150px;
+    height: 150px;
+  }
+
+  .social-media-label {
+    font-size: 18px;
+  }
 }
 
+@media (min-width: 768px) {
+  .social-media-icons a img {
+    width: 200px;
+    height: 200px;
+  }
+
+  .social-media-label {
+    font-size: 20px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .social-media-icons a img {
+    width: 250px;
+    height: 250px;
+  }
+
+  .social-media-label {
+    font-size: 22px;
+  }
+}
