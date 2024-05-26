@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import JSZip from 'jszip';
 import '../styles/PropiedadForm.css';
 import NavigationBar from './NavigationBar';
 
@@ -23,6 +24,7 @@ function PropiedadForm() {
     parking: false,
     piscina: false,
     imagePath: [],
+    imageFiles: [],
   });
 
   const API_BASE_URL = 'http://192.168.64.116:7770';
@@ -34,12 +36,9 @@ function PropiedadForm() {
   };
 
   const handleImageChange = (e) => {
-    const files = e.target.files;
-    const imagePaths = [];
-    for (let i = 0; i < files.length; i++) {
-      imagePaths.push(URL.createObjectURL(files[i]));
-    }
-    setPropiedad({ ...propiedad, imagePath: imagePaths });
+    const files = Array.from(e.target.files);
+    const imagePaths = files.map(file => URL.createObjectURL(file));
+    setPropiedad({ ...propiedad, imagePath: imagePaths, imageFiles: files });
   };
 
   const logDataToJson = () => {
@@ -47,70 +46,89 @@ function PropiedadForm() {
     console.log(JSON.stringify(propiedad, null, 2));
   };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    logDataToJson();
-    try {
-      const token = localStorage.getItem('token');
-      const response = await fetch(`${API_BASE_URL}/property`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${token}`
-        },
-        body: JSON.stringify(propiedad),
+const handleSubmit = async (e) => {
+  e.preventDefault();
+  logDataToJson();
+  try {
+    const token = localStorage.getItem('token');
+
+    // Enviar datos de la propiedad
+    const response = await fetch(`${API_BASE_URL}/property`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}`
+      },
+      body: JSON.stringify(propiedad),
+    });
+
+    if (!response.ok) {
+      throw new Error('Error al guardar la propiedad');
+    }
+
+    const data = await response.json();
+    const idProperty = data.id; //
+
+    // Envia imagenes en el caso de que haya
+    if (propiedad.imageFiles.length > 0) {
+      const formData = new FormData();
+      propiedad.imageFiles.forEach((file, index) => {
+        formData.append(`files[${index}]`, file);
       });
 
-      if (!response.ok) {
-        throw new Error('Error al guardar la propiedad');
+      const imageResponse = await fetch(`${API_BASE_URL}/property/uploadimage?idProperty=${idProperty}`, {
+        method: 'POST',
+        headers: {
+          'Authorization': `Bearer ${token}`
+        },
+        body: formData,
+      });
+
+      if (!imageResponse.ok) {
+        throw new Error('Error al guardar las imágenes');
       }
-
-      alert('Propiedad guardada exitosamente');
-      navigate('/');
-    } catch (error) {
-      console.error('Error al guardar la propiedad:', error);
-      alert('Error al guardar la propiedad. Por favor, inténtalo de nuevo.');
     }
-  };
 
-  const renderTipoPropiedadOptions = () => {
-    return (
-      <select name="tipoPropiedad" value={propiedad.tipoPropiedad} onChange={handleChange} className="inputt">
-        <option value="">Seleccionar tipo de propiedad</option>
-        <option value="casa">Casa</option>
-        <option value="piso">Piso</option>
-      </select>
-    );
-  };
+    alert('Propiedad y imágenes guardadas exitosamente');
+    navigate('/');
+  } catch (error) {
+    console.error('Error al guardar la propiedad:', error);
+    alert('Error al guardar la propiedad. Por favor, inténtalo de nuevo.');
+  }
+};
 
-  const renderEstadoOptions = () => {
-    return (
-      <select name="estado" value={propiedad.estado} onChange={handleChange} className="inputt">
-        <option value="">Seleccionar estado</option>
-        <option value="Casi nuevo">Casi nuevo</option>
-        <option value="Muy bien">Muy bien</option>
-        <option value="Bien">Bien</option>
-        <option value="A reformar">A reformar</option>
-        <option value="Reformado">Reformado</option>
-      </select>
-    );
-  };
+  const renderTipoPropiedadOptions = () => (
+    <select name="tipoPropiedad" value={propiedad.tipoPropiedad} onChange={handleChange} className="inputt">
+      <option value="">Seleccionar tipo de propiedad</option>
+      <option value="casa">Casa</option>
+      <option value="piso">Piso</option>
+    </select>
+  );
 
-  const renderOrientacionOptions = () => {
-    return (
-      <select name="orientacion" value={propiedad.orientacion} onChange={handleChange} className="inputt">
-        <option value="">Seleccionar orientación</option>
-        <option value="norte">Norte</option>
-        <option value="nordeste">Nordeste</option>
-        <option value="este">Este</option>
-        <option value="sureste">Sureste</option>
-        <option value="sur">Sur</option>
-        <option value="suroeste">Suroeste</option>
-        <option value="oeste">Oeste</option>
-        <option value="noroeste">Noroeste</option>
-      </select>
-    );
-  };
+  const renderEstadoOptions = () => (
+    <select name="estado" value={propiedad.estado} onChange={handleChange} className="inputt">
+      <option value="">Seleccionar estado</option>
+      <option value="Casi nuevo">Casi nuevo</option>
+      <option value="Muy bien">Muy bien</option>
+      <option value="Bien">Bien</option>
+      <option value="A reformar">A reformar</option>
+      <option value="Reformado">Reformado</option>
+    </select>
+  );
+
+  const renderOrientacionOptions = () => (
+    <select name="orientacion" value={propiedad.orientacion} onChange={handleChange} className="inputt">
+      <option value="">Seleccionar orientación</option>
+      <option value="norte">Norte</option>
+      <option value="nordeste">Nordeste</option>
+      <option value="este">Este</option>
+      <option value="sureste">Sureste</option>
+      <option value="sur">Sur</option>
+      <option value="suroeste">Suroeste</option>
+      <option value="oeste">Oeste</option>
+      <option value="noroeste">Noroeste</option>
+    </select>
+  );
 
   return (
     <div>
