@@ -27,3 +27,13 @@
 .profile-button:hover {
   background-color: #0056b3; /* Cambiar el color de fondo al pasar el ratón */
 }
+
+.bienvenido {
+  font-size: 44px;
+  position: absolute;
+  top: 250px;
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center; /
+  width: 100%;
+}

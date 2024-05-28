@@ -15,7 +15,6 @@ function MiPropiedad() {
     const fetchMiPropiedad = async () => {
       const token = localStorage.getItem('token');
       if (!token) {
-        alert('Token no encontrado. Por favor, inicia sesión de nuevo.');
         return;
       }
 
@@ -50,7 +49,7 @@ function MiPropiedad() {
       <div>
         <NavigationBar />
         <div className="msg">
-          <p className="msg">Cargando propiedad...</p>
+          <p className="msg">Cargando propiedades...</p>
         </div>
       </div>
     );

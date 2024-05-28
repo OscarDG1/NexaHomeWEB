@@ -6,18 +6,21 @@ import '../styles/Perfil.css';
 const ProfileScreen = () => {
   const navigate = useNavigate();
 
+  const username = localStorage.getItem('name');
+
   const handleLogout = () => {
     localStorage.removeItem('token');
     navigate('/');
   };
 
   return (
-    <div>
-      <NavigationBar />
-      <div className="profile-screen">
-        <h1>Perfil</h1>
-        <div className="user-properties">
-        </div>
+      <div>
+        <NavigationBar />
+        <div className="profile-screen">
+          <h1 className="bienvenido">Bienvenido {name}</h1>
+          <h2 className="profile-heading">Perfil</h2>
+          <div className="user-properties">
+          </div>
 
         <div className="profile-options">
           <Link to="/MiPropiedad" className="profile-button">Tus propiedades</Link>
