@@ -4,10 +4,9 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e141208e-92b4-44dd-9a15-c2495012da98" name="Changes" comment="Cambios estetica">
+    <list default="true" id="e141208e-92b4-44dd-9a15-c2495012da98" name="Changes" comment="Tests">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/screens/MiPropiedad.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/MiPropiedad.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/screens/PerfilScreen.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/PerfilScreen.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/screens/PropiedadForm.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/PropiedadForm.jsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -275,7 +274,15 @@
       <option name="project" value="LOCAL" />
       <updated>1716899425591</updated>
     </task>
-    <option name="localTasksCounter" value="25" />
+    <task id="LOCAL-00025" summary="Tests">
+      <option name="closed" value="true" />
+      <created>1716909088912</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1716909088912</updated>
+    </task>
+    <option name="localTasksCounter" value="26" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -304,6 +311,7 @@
     <MESSAGE value="PropiedadForm cambiado" />
     <MESSAGE value="Añadido MiPropiedad + arreglos en PropiedadForm" />
     <MESSAGE value="Cambios estetica" />
-    <option name="LAST_COMMIT_MESSAGE" value="Cambios estetica" />
+    <MESSAGE value="Tests" />
+    <option name="LAST_COMMIT_MESSAGE" value="Tests" />
   </component>
 </project>

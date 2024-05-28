@@ -1,8 +1,11 @@
-import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
-import NavigationBar from './NavigationBar';
-import Modal from 'react-modal';
+import React, { useState } from 'react';
 import '../styles/Propiedades.css';
+import NavigationBar from './NavigationBar';
+import casa from '../assets/casa.jpg';
+import bano from '../assets/bano.jpg';
+import superficie from '../assets/superficie.png';
+import habitacion from '../assets/habitacion.png';
+import Modal from 'react-modal';
 
 function MiPropiedad() {
   const navigate = useNavigate();
@@ -92,16 +95,18 @@ function MiPropiedad() {
         <div className="property-details">
           <div className="property-texts">
             <span className="property-price">
-              <span className="price-bold">{miPropiedad.price}€</span>
+              <span className="price-bold">{miPropiedad.precio ? `${miPropiedad.precio}€` : 'Precio no disponible'}</span>
             </span>
             <span className="property-meters">
-              <span className="price-bold">Superficie:</span>&nbsp;{miPropiedad.squareMeters} m²
+              <span className="price-bold">Superficie:</span>&nbsp;{miPropiedad.metrosCuadrados ? `${miPropiedad.metrosCuadrados} m²` : 'Superficie no disponible'}
             </span>
             <span className="property-bedrooms">
-              <span className="price-bold">Habitaciones:</span>&nbsp;{miPropiedad.habitacion}
+              <span className="price-bold">Habitaciones:</span>&nbsp;{miPropiedad.habitacion || 'No disponible'}
+              {miPropiedad.habitacion && <img src={habitacion} alt="Icono de habitaciones" className="property-icon" />}
             </span>
             <span className="property-bathrooms">
-              <span className="price-bold">Baños:</span>&nbsp;{miPropiedad.banos}
+              <span className="price-bold">Baños:</span>&nbsp;{miPropiedad.bano || 'No disponible'}
+              {miPropiedad.bano && <img src={bano} alt="Icono de baños" className="property-icon" />}
             </span>
           </div>
           <button className="contact-button btn" onClick={() => alert('Contacto no implementado')}>Contactar</button>
@@ -115,11 +120,11 @@ function MiPropiedad() {
           className="modal"
           overlayClassName="modal-overlay"
         >
-          <h2>{selectedProperty.name}</h2>
-          <p>Precio: {selectedProperty.price}€</p>
-          <p>Superficie: {selectedProperty.squareMeters} m²</p>
+          <h2>{selectedProperty.calle} {selectedProperty.numero}, {selectedProperty.ciudad}</h2>
+          <p>Precio: {selectedProperty.precio}€</p>
+          <p>Superficie: {selectedProperty.metrosCuadrados} m²</p>
           <p>Habitaciones: {selectedProperty.habitacion}</p>
-          <p>Baños: {selectedProperty.banos}</p>
+          <p>Baños: {selectedProperty.bano}</p>
           <p>Ciudad: {selectedProperty.ciudad}</p>
           <p>Provincia: {selectedProperty.provincia}</p>
           <p>Calle: {selectedProperty.calle}</p>

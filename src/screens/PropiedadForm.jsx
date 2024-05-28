@@ -29,20 +29,20 @@ function PropiedadForm() {
   const [imageFiles, setImageFiles] = useState([]);
 
   const handleChange = (e) => {
-    const { name, value, type, checked } = e.target;
-    let newValue = value;
+      const { name, value, type, checked } = e.target;
+      let newValue = value;
 
-    if (type === 'number') {
-      if (isNaN(value) || Number(value) < 0) {
-        return;
+      if (type === 'number') {
+        if (isNaN(value) || Number(value) < 0) {
+          return;
+        }
+        newValue = Number(value);
+      } else if (type === 'checkbox') {
+        newValue = checked;
       }
-      newValue = Number(value);
-    } else if (type === 'checkbox') {
-      newValue = checked;
-    }
 
-    setPropiedad({ ...propiedad, [name]: newValue });
-  };
+      setPropiedad({ ...propiedad, [name]: newValue });
+    };
 
   const handleImageChange = (e) => {
     const files = Array.from(e.target.files);
@@ -79,7 +79,7 @@ function PropiedadForm() {
           }
 
           alert('Propiedad y imágenes guardadas exitosamente');
-          navigate('/');
+          navigate('/Propiedades');
       } catch (error) {
           console.error('Error al guardar la propiedad:', error);
           alert(`Error al guardar la propiedad: ${error.message}`);
