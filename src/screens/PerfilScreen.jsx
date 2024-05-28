@@ -20,7 +20,7 @@ const ProfileScreen = () => {
         </div>
 
         <div className="profile-options">
-          <Link to="/propiedades" className="profile-button">Tus propiedades</Link>
+          <Link to="/MiPropiedad" className="profile-button">Tus propiedades</Link>
           <Link to="/edit-profile" className="profile-button">Editar perfil</Link>
           <Link to="/change-password" className="profile-button">Cambiar contraseña</Link>
           <Link to="/socialMedia" className="profile-button">Redes sociales</Link>

@@ -7,7 +7,7 @@ import superficie from '../assets/superficie.png';
 import habitacion from '../assets/habitacion.png';
 import Modal from 'react-modal';
 
-Modal.setAppElement('#root'); // Needed for accessibility
+Modal.setAppElement('#root');
 
 function PropertyList() {
   const [properties] = useState([

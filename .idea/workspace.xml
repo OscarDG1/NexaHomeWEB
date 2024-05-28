@@ -4,13 +4,14 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e141208e-92b4-44dd-9a15-c2495012da98" name="Changes" comment="Propiedades plantilla modal creada.">
+    <list default="true" id="e141208e-92b4-44dd-9a15-c2495012da98" name="Changes" comment="PropiedadForm cambiado">
+      <change afterPath="$PROJECT_DIR$/src/screens/MiPropiedad.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/App.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/screens/PerfilScreen.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/PerfilScreen.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/screens/PropiedadForm.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/PropiedadForm.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/styles/HomeScreen.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/styles/HomeScreen.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/styles/PropiedadForm.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/styles/PropiedadForm.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/screens/Propiedades.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/Propiedades.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/styles/Propiedades.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/styles/Propiedades.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/styles/socialMedia.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/styles/socialMedia.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -62,7 +63,7 @@
     &quot;cidr.known.project.marker&quot;: &quot;true&quot;,
     &quot;git-widget-placeholder&quot;: &quot;master&quot;,
     &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;D:/AndroidStudioProjects/NexaHomeWEB/src/screens&quot;,
+    &quot;last_opened_file_path&quot;: &quot;D:/Android Proyectos/NexaHomeWEB&quot;,
     &quot;settings.editor.selected.configurable&quot;: &quot;preferences.fileTypes&quot;
   }
 }</component>
@@ -245,7 +246,15 @@
       <option name="project" value="LOCAL" />
       <updated>1715954773861</updated>
     </task>
-    <option name="localTasksCounter" value="21" />
+    <task id="LOCAL-00021" summary="PropiedadForm cambiado">
+      <option name="closed" value="true" />
+      <created>1716742157625</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1716742157625</updated>
+    </task>
+    <option name="localTasksCounter" value="22" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -271,6 +280,7 @@
     <MESSAGE value="Creado Cambiar Contraseña." />
     <MESSAGE value="Creado Editar Perfil." />
     <MESSAGE value="Propiedades plantilla modal creada." />
-    <option name="LAST_COMMIT_MESSAGE" value="Propiedades plantilla modal creada." />
+    <MESSAGE value="PropiedadForm cambiado" />
+    <option name="LAST_COMMIT_MESSAGE" value="PropiedadForm cambiado" />
   </component>
 </project>
