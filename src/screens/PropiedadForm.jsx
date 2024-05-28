@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import JSZip from 'jszip';
 import '../styles/PropiedadForm.css';
 import NavigationBar from './NavigationBar';
 
@@ -23,11 +22,11 @@ function PropiedadForm() {
     ascensor: false,
     parking: false,
     piscina: false,
-    imagePath: [],
-    imageFiles: [],
   });
 
-  const API_BASE_URL = 'http://192.168.64.116:7770';
+  const API_BASE_URL = 'http://192.168.0.23:7770';
+
+  const [imageFiles, setImageFiles] = useState([]);
 
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
@@ -37,65 +36,87 @@ function PropiedadForm() {
 
   const handleImageChange = (e) => {
     const files = Array.from(e.target.files);
-    const imagePaths = files.map(file => URL.createObjectURL(file));
-    setPropiedad({ ...propiedad, imagePath: imagePaths, imageFiles: files });
+    setImageFiles(files);
   };
 
-  const logDataToJson = () => {
-    console.log('Datos de la propiedad en formato JSON:');
-    console.log(JSON.stringify(propiedad, null, 2));
-  };
+  const handleSubmit = async (e) => {
+      e.preventDefault();
+      console.log('Submit iniciado');
 
-const handleSubmit = async (e) => {
-  e.preventDefault();
-  logDataToJson();
-  try {
-    const token = localStorage.getItem('token');
-
-    // Enviar datos de la propiedad
-    const response = await fetch(`${API_BASE_URL}/property`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${token}`
-      },
-      body: JSON.stringify(propiedad),
-    });
-
-    if (!response.ok) {
-      throw new Error('Error al guardar la propiedad');
-    }
-
-    const data = await response.json();
-    const idProperty = data.id; //
-
-    // Envia imagenes en el caso de que haya
-    if (propiedad.imageFiles.length > 0) {
-      const formData = new FormData();
-      propiedad.imageFiles.forEach((file, index) => {
-        formData.append(`files[${index}]`, file);
-      });
-
-      const imageResponse = await fetch(`${API_BASE_URL}/property/uploadimage?idProperty=${idProperty}`, {
-        method: 'POST',
-        headers: {
-          'Authorization': `Bearer ${token}`
-        },
-        body: formData,
-      });
-
-      if (!imageResponse.ok) {
-        throw new Error('Error al guardar las imágenes');
+      const token = localStorage.getItem('token');
+      if (!token) {
+          alert('Token no encontrado. Por favor, inicia sesión de nuevo.');
+          return;
       }
-    }
 
-    alert('Propiedad y imágenes guardadas exitosamente');
-    navigate('/');
-  } catch (error) {
-    console.error('Error al guardar la propiedad:', error);
-    alert('Error al guardar la propiedad. Por favor, inténtalo de nuevo.');
-  }
-};
+      try {
+          console.log('Enviando datos de la propiedad...');
+          const idProperty = await savePropertyAndGetId(token, propiedad);
+          if (!idProperty) {
+              throw new Error('Error al obtener idProperty');
+          }
+          console.log('ID de propiedad obtenido:', idProperty);
+
+          if (idProperty && imageFiles.length > 0) {
+              console.log('Subiendo imágenes...');
+              const imageUploadResponse = await uploadImages(token, idProperty, imageFiles);
+              if (!imageUploadResponse.ok) {
+                  throw new Error('Error al guardar las imágenes');
+              }
+              console.log('Imágenes enviadas correctamente');
+          } else {
+              console.log('No hay imágenes para subir');
+          }
+
+          alert('Propiedad y imágenes guardadas exitosamente');
+          navigate('/');
+      } catch (error) {
+          console.error('Error al guardar la propiedad:', error);
+          alert(`Error al guardar la propiedad: ${error.message}`);
+      }
+  };
+
+  const savePropertyAndGetId = async (token, propiedad) => {
+      console.log('Enviando datos de la propiedad al servidor...');
+      const response = await fetch(`${API_BASE_URL}/property`, {
+          method: 'POST',
+          headers: {
+              'Content-Type': 'application/json',
+              'Authorization': token,
+          },
+          body: JSON.stringify(propiedad),
+      });
+
+      if (!response.ok) {
+          throw new Error('Error al guardar la propiedad');
+      }
+
+      const data = await response.json();
+      console.log('Respuesta del servidor:', data);
+      return data.Id;
+  };
+
+  const uploadImages = async (token, idProperty, imageFiles) => {
+      console.log('Subiendo imágenes al servidor...');
+
+      const formData = new FormData();
+
+      imageFiles.forEach((file, index) => {
+        formData.append('files', file);
+      });
+
+      const response = await fetch(`${API_BASE_URL}/property/uploadimage?idProperty=${idProperty}`, {
+          method: 'POST',
+          headers: {
+              'Authorization': token,
+          },
+          body: formData,
+      });
+
+      console.log('Respuesta de la subida de imágenes:', response);
+      return response;
+  };
+
 
   const renderTipoPropiedadOptions = () => (
     <select name="tipoPropiedad" value={propiedad.tipoPropiedad} onChange={handleChange} className="inputt">
@@ -200,7 +221,7 @@ const handleSubmit = async (e) => {
 
           <div className="group">
             <div className="input-wrapper">
-              <textarea className="inputt" name="descripcion" value={propiedad.descripcion} onChange={handleChange} required />
+              <textarea className="inputt textarea" name="descripcion" value={propiedad.descripcion} onChange={handleChange} required />
               <label className={propiedad.descripcion ? 'input-label input-label-up' : 'input-label'}>Descripción</label>
               <span className="highlight"></span>
               <span className="bar"></span>
@@ -258,15 +279,9 @@ const handleSubmit = async (e) => {
           </div>
 
           <div className="group">
-            <input type="file" multiple className="inputt" name="imagePath" onChange={handleImageChange} />
+            <input type="file" multiple className="inputt" name="imageFiles" onChange={handleImageChange} />
             <label>Imagen</label>
           </div>
-
-          {propiedad.imagePath && propiedad.imagePath.map((image, index) => (
-            <div key={index} className="image-preview">
-              <img src={image} alt={`Imagen ${index + 1}`} />
-            </div>
-          ))}
 
           <div className="group">
             <div className="button btn-container">
