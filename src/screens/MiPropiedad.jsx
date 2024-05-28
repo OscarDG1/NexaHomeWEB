@@ -15,6 +15,8 @@ function MiPropiedad() {
     const fetchMiPropiedad = async () => {
       const token = localStorage.getItem('token');
       if (!token) {
+        alert('No estás logueado. Por favor, inicia sesión.');
+        navigate('/');
         return;
       }
 
@@ -55,6 +57,16 @@ function MiPropiedad() {
     );
   }
 
+  if (!miPropiedad || Object.keys(miPropiedad).length === 0) {
+    return (
+      <div>
+        <NavigationBar />
+        <div className="msg">
+          <p className="msg">No tienes propiedades registradas.</p>
+        </div>
+      </div>
+    );
+  }
 
   const openModal = (property) => {
     setSelectedProperty(property);
@@ -71,7 +83,11 @@ function MiPropiedad() {
       <NavigationBar />
       <div className="property-card" onClick={() => openModal(miPropiedad)}>
         <div className="property-image-container">
-          <img src={miPropiedad.imagePath[0]} alt="Imagen de la casa" className="property-image" />
+          {miPropiedad.imagePath && miPropiedad.imagePath.length > 0 ? (
+            <img src={miPropiedad.imagePath[0]} alt="Imagen de la casa" className="property-image" />
+          ) : (
+            <div className="no-image">No hay imagen disponible</div>
+          )}
         </div>
         <div className="property-details">
           <div className="property-texts">
@@ -88,7 +104,7 @@ function MiPropiedad() {
               <span className="price-bold">Baños:</span>&nbsp;{miPropiedad.banos}
             </span>
           </div>
-          <button className="contact-button btn" onClick={handleContactClick}>Contactar</button>
+          <button className="contact-button btn" onClick={() => alert('Contacto no implementado')}>Contactar</button>
         </div>
       </div>
       {selectedProperty && (

@@ -4,11 +4,11 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e141208e-92b4-44dd-9a15-c2495012da98" name="Changes" comment="Añadido MiPropiedad + arreglos en PropiedadForm">
+    <list default="true" id="e141208e-92b4-44dd-9a15-c2495012da98" name="Changes" comment="Cambios estetica">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/screens/MiPropiedad.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/MiPropiedad.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/screens/PerfilScreen.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/PerfilScreen.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/styles/Perfil.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/styles/Perfil.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/screens/PropiedadForm.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/PropiedadForm.jsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -259,7 +259,23 @@
       <option name="project" value="LOCAL" />
       <updated>1716896752647</updated>
     </task>
-    <option name="localTasksCounter" value="23" />
+    <task id="LOCAL-00023" summary="Cambios estetica">
+      <option name="closed" value="true" />
+      <created>1716899400808</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1716899400808</updated>
+    </task>
+    <task id="LOCAL-00024" summary="Cambios estetica">
+      <option name="closed" value="true" />
+      <created>1716899425591</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1716899425591</updated>
+    </task>
+    <option name="localTasksCounter" value="25" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -287,6 +303,7 @@
     <MESSAGE value="Propiedades plantilla modal creada." />
     <MESSAGE value="PropiedadForm cambiado" />
     <MESSAGE value="Añadido MiPropiedad + arreglos en PropiedadForm" />
-    <option name="LAST_COMMIT_MESSAGE" value="Añadido MiPropiedad + arreglos en PropiedadForm" />
+    <MESSAGE value="Cambios estetica" />
+    <option name="LAST_COMMIT_MESSAGE" value="Cambios estetica" />
   </component>
 </project>

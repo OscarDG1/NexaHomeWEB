@@ -17,7 +17,7 @@ const ProfileScreen = () => {
       <div>
         <NavigationBar />
         <div className="profile-screen">
-          <h1 className="bienvenido">Bienvenido {name}</h1>
+          <h1 className="bienvenido">Bienvenido {username}</h1>
           <h2 className="profile-heading">Perfil</h2>
           <div className="user-properties">
           </div>
