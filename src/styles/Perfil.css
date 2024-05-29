@@ -13,20 +13,25 @@
 }
 
 .profile-button {
-  margin-bottom: 10px; /* Agregar espacio entre los botones */
-  margin-top: 5px; /* Subir los botones un poco */
-  padding: 10px 20px; /* Ajustar el relleno según sea necesario */
-  background-color: #007bff; /* Color de fondo */
-  color: #fff; /* Color del texto */
-  border: none; /* Eliminar borde */
-  border-radius: 5px; /* Añadir bordes redondeados */
-  text-decoration: none; /* Eliminar subrayado */
-  cursor: pointer; /* Cambiar el cursor al pasar el ratón */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 10px;
+  margin-top: 5px;
+  padding: 10px 20px;
+  width: 200px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  text-decoration: none;
+  cursor: pointer;
 }
 
 .profile-button:hover {
-  background-color: #0056b3; /* Cambiar el color de fondo al pasar el ratón */
+  background-color: #0056b3;
 }
+
 
 .bienvenido {
   font-size: 44px;

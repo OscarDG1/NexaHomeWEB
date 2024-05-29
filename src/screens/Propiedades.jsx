@@ -7,7 +7,6 @@ import casa from '../assets/casa.jpg';
 import bano from '../assets/bano.jpg';
 import superficie from '../assets/superficie.png';
 import habitacion from '../assets/habitacion.png';
-import Propiedad from './Propiedad';
 import Fondo from '../assets/fondopantalla.jpg';
 
 const API_BASE_URL = 'http://192.168.0.23:7770';
@@ -39,26 +38,32 @@ function Propiedades() {
 
         const data = await response.json();
         if (data && data.length > 0) {
-          const propiedadesData = data.map((prop) => new Propiedad({
-            id: prop[0],
-            email: prop[1],
-            metrosCuadrados: prop[2],
-            ciudad: prop[3],
-            provincia: prop[4],
-            calle: prop[5],
-            numero: prop[6],
-            precio: prop[7],
-            estado: prop[8],
-            parking: prop[9],
-            piscina: prop[10],
-            tipoPropiedad: prop[11],
-            planta: prop[12],
-            descripcion: prop[13],
-            habitacion: prop[16],
-            bano: prop[17],
-            orientacion: prop[14],
-            ascensor: prop[15]
-          }));
+          const propiedadesData = await Promise.all(
+            data.map(async (prop) => {
+              const imageUrl = await fetchImage(prop[0]);
+              return {
+                id: prop[0],
+                email: prop[1],
+                metrosCuadrados: prop[2],
+                ciudad: prop[3],
+                provincia: prop[4],
+                calle: prop[5],
+                numero: prop[6],
+                precio: prop[7],
+                estado: prop[8],
+                parking: prop[9],
+                piscina: prop[10],
+                tipoPropiedad: prop[11],
+                planta: prop[12],
+                descripcion: prop[13],
+                habitacion: prop[16],
+                bano: prop[17],
+                orientacion: prop[14],
+                ascensor: prop[15],
+                imagePath: imageUrl
+              };
+            })
+          );
           setPropiedades(propiedadesData);
         }
       } catch (error) {
@@ -70,6 +75,23 @@ function Propiedades() {
 
     fetchPropiedades();
   }, [navigate]);
+
+  const fetchImage = async (propertyId) => {
+    const token = localStorage.getItem('token');
+    const response = await fetch(`${API_BASE_URL}/property/iconImg?idProperty=${propertyId}`, {
+      method: 'GET',
+      headers: {
+        'Authorization': token,
+      }
+    });
+
+    if (!response.ok) {
+      throw new Error('Error al obtener la imagen de la propiedad');
+    }
+
+    const blob = await response.blob();
+    return URL.createObjectURL(blob);
+  };
 
   const openModal = (property) => {
     setSelectedProperty(property);
@@ -104,12 +126,11 @@ function Propiedades() {
             {propiedades.map((propiedad, index) => (
               <div key={index} className="property-card" onClick={() => openModal(propiedad)}>
                 <div className="property-image-container">
-                  {propiedad.imagePath && propiedad.imagePath.length > 0 ? (
-                    <img src={`${API_BASE_URL}/property/downloadimage?idProperty=${propiedad.id}`} alt="Imagen de la casa" className="property-image" />
+                  {propiedad.imagePath ? (
+                    <img src={propiedad.imagePath} alt="Imagen de la casa" className="property-image" />
                   ) : (
                     <div className="no-image">No hay imagen disponible</div>
                   )}
-
                 </div>
                 <div className="property-details">
                   <div className="property-texts">

@@ -17,7 +17,6 @@ function MiPropiedad() {
 
   const API_BASE_URL = 'http://192.168.0.23:7770';
 
-  // Hook useEffect para obtener las propiedades cuando el componente se monta
   useEffect(() => {
     const fetchMisPropiedades = async () => {
       const token = localStorage.getItem('token');
@@ -41,13 +40,10 @@ function MiPropiedad() {
         }
 
         const data = await response.json();
-        const propiedadesData = [];
-
-
-        data.forEach((prop, index) => {
-
-          propiedadesData.push(
-            new Propiedad({
+        const propiedadesData = await Promise.all(
+          data.map(async (prop) => {
+            const imageUrl = await fetchImage(prop[0]);
+            return {
               id: prop[0],
               email: prop[1],
               metrosCuadrados: prop[2],
@@ -65,10 +61,12 @@ function MiPropiedad() {
               habitacion: prop[16],
               bano: prop[17],
               orientacion: prop[14],
-              ascensor: prop[15]
-            })
-          );
-        });
+              ascensor: prop[15],
+              imagePath: imageUrl
+            };
+          })
+        );
+
         console.log("Cantidad Propiedades");
         console.log("--------------------");
         console.log(propiedadesData.length);
@@ -76,8 +74,8 @@ function MiPropiedad() {
         console.log("Informacion por propiedad");
         console.log("-------------------------");
         propiedadesData.forEach(property => {
-          console.log(property.obtenerDescripcionBreve());
-        })
+          console.log(property);
+        });
 
         setPropiedades(propiedadesData);
       } catch (error) {
@@ -90,12 +88,29 @@ function MiPropiedad() {
     fetchMisPropiedades();
   }, [navigate]);
 
+  const fetchImage = async (propertyId) => {
+    const token = localStorage.getItem('token');
+    const response = await fetch(`${API_BASE_URL}/property/iconImg?idProperty=${propertyId}`, {
+      method: 'GET',
+      headers: {
+        'Authorization': token,
+      }
+    });
+
+    if (!response.ok) {
+      throw new Error('Error al obtener la imagen de la propiedad');
+    }
+
+    const blob = await response.blob();
+    const imageUrl = URL.createObjectURL(blob);
+    console.log(`Imagen para propiedad ${propertyId}: ${imageUrl}`);
+    return imageUrl;
+  };
 
   const openModal = (property) => {
     setSelectedProperty(property);
     setModalIsOpen(true);
   };
-
 
   const closeModal = () => {
     setSelectedProperty(null);
@@ -104,49 +119,43 @@ function MiPropiedad() {
 
   return (
     <div>
-      <NavigationBar /> {/* Componente de la barra de navegación */}
+      <NavigationBar />
       <div className="property-list">
-        {propiedades.length === 0 ? ( // Condicional para mostrar un mensaje mientras se cargan las propiedades
+        {propiedades.length === 0 ? (
           <div className="msg">
             <p className="msg">Cargando propiedades...</p>
           </div>
         ) : (
           <div>
-            {(() => {
-              const elementos = [];
-              propiedades.forEach((propiedad, index) => {
-                elementos.push(
-                  <div key={index} className="property-card" onClick={() => openModal(propiedad)}>
-                    <div className="property-image-container">
-                      {propiedad.imagePath && propiedad.imagePath.length > 0 ? (
-                        <img src={propiedad.imagePath[0]} alt="Imagen de la casa" className="property-image" />
-                      ) : (
-                        <div className="no-image">No hay imagen disponible</div>
-                      )}
-                    </div>
-                    <div className="property-details">
-                      <div className="property-texts">
-                        <span className="property-price">
-                          <span className="price-bold">{propiedad.precio ? `${propiedad.precio}€` : 'Precio no disponible'}</span>
-                        </span>
-                        <span className="property-meters">
-                          <span className="price-bold">Superficie:</span>&nbsp;{propiedad.metrosCuadrados ? `${propiedad.metrosCuadrados} m²` : 'Superficie no disponible'}
-                        </span>
-                        <span className="property-bedrooms">
-                          <span className="price-bold">Habitaciones:</span>&nbsp;{propiedad.habitacion || 'No disponible'}
-                          {propiedad.habitacion && <img src={habitacion} alt="Icono de habitaciones" className="property-icon" />}
-                        </span>
-                        <span className="property-bathrooms">
-                          <span className="price-bold">Baños:</span>&nbsp;{propiedad.bano || 'No disponible'}
-                          {propiedad.bano && <img src={bano} alt="Icono de baños" className="property-icon" />}
-                        </span>
-                      </div>
-                    </div>
+            {propiedades.map((propiedad, index) => (
+              <div key={index} className="property-card" onClick={() => openModal(propiedad)}>
+                <div className="property-image-container">
+                  {propiedad.imagePath ? (
+                    <img src={propiedad.imagePath} alt="Imagen de la casa" className="property-image" />
+                  ) : (
+                    <div className="no-image">No hay imagen disponible</div>
+                  )}
+                </div>
+                <div className="property-details">
+                  <div className="property-texts">
+                    <span className="property-price">
+                      <span className="price-bold">{propiedad.precio ? `${propiedad.precio}€` : 'Precio no disponible'}</span>
+                    </span>
+                    <span className="property-meters">
+                      <span className="price-bold">Superficie:</span>&nbsp;{propiedad.metrosCuadrados ? `${propiedad.metrosCuadrados} m²` : 'Superficie no disponible'}
+                    </span>
+                    <span className="property-bedrooms">
+                      <span className="price-bold">Habitaciones:</span>&nbsp;{propiedad.habitacion || 'No disponible'}
+                      {propiedad.habitacion && <img src={habitacion} alt="Icono de habitaciones" className="property-icon" />}
+                    </span>
+                    <span className="property-bathrooms">
+                      <span className="price-bold">Baños:</span>&nbsp;{propiedad.bano || 'No disponible'}
+                      {propiedad.bano && <img src={bano} alt="Icono de baños" className="property-icon" />}
+                    </span>
                   </div>
-                );
-              });
-              return elementos;
-            })()}
+                </div>
+              </div>
+            ))}
           </div>
         )}
       </div>
