@@ -45,8 +45,11 @@ function MiPropiedad() {
 
 
         data.forEach((prop, index) => {
+
           propiedadesData.push(
             new Propiedad({
+              id: prop[0],
+              email: prop[1],
               metrosCuadrados: prop[2],
               ciudad: prop[3],
               provincia: prop[4],
@@ -59,10 +62,10 @@ function MiPropiedad() {
               tipoPropiedad: prop[11],
               planta: prop[12],
               descripcion: prop[13],
-              habitacion: prop[14],
-              bano: prop[15],
-              orientacion: prop[16],
-              ascensor: prop[17]
+              habitacion: prop[16],
+              bano: prop[17],
+              orientacion: prop[14],
+              ascensor: prop[15]
             })
           );
         });

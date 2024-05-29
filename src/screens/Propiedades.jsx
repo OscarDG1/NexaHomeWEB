@@ -16,14 +16,22 @@ function Propiedades() {
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [selectedProperty, setSelectedProperty] = useState(null);
 
+  var count = 0
+
   const API_BASE_URL = 'http://192.168.0.23:7770';
 
   useEffect(() => {
+    
     const fetchPropiedades = async () => {
       try {
+        const token = localStorage.getItem('token');
+
         console.log('Obteniendo información de todas las propiedades...');
-        const response = await fetch(`${API_BASE_URL}/property/allProperties`, {
+        const response = await fetch(`${API_BASE_URL}/property/allProperty?position=${count}`, {
           method: 'GET',
+          headers: {
+            'Authorization': token,
+          }
         });
 
         if (!response.ok) {
@@ -34,8 +42,11 @@ function Propiedades() {
         const propiedadesData = [];
 
         data.forEach((prop, index) => {
+
           propiedadesData.push(
             new Propiedad({
+              id: prop[0],
+              email: prop[1],
               metrosCuadrados: prop[2],
               ciudad: prop[3],
               provincia: prop[4],
@@ -48,10 +59,10 @@ function Propiedades() {
               tipoPropiedad: prop[11],
               planta: prop[12],
               descripcion: prop[13],
-              habitacion: prop[14],
-              bano: prop[15],
-              orientacion: prop[16],
-              ascensor: prop[17]
+              habitacion: prop[16],
+              bano: prop[17],
+              orientacion: prop[14],
+              ascensor: prop[15]
             })
           );
         });
@@ -62,6 +73,7 @@ function Propiedades() {
         alert(`Error al obtener las propiedades: ${error.message}`);
         navigate('/'); // Redirige en caso de error
       }
+    
     };
 
     fetchPropiedades();

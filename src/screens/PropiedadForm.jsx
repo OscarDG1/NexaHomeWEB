@@ -77,7 +77,7 @@ function PropiedadForm() {
           } else {
               console.log('No hay imágenes para subir');
           }
-          navigate('/Propiedades');
+         // navigate('/Propiedades');
       } catch (error) {
           console.error('Error al guardar la propiedad:', error);
           alert(`Error al guardar la propiedad: ${error.message}`);

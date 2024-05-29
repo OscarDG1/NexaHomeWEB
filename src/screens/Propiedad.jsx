@@ -1,5 +1,7 @@
 class Propiedad {
   constructor({
+    id,
+    email,
     metrosCuadrados,
     ciudad,
     provincia,
@@ -17,6 +19,8 @@ class Propiedad {
     orientacion,
     ascensor
   }) {
+    this.id = id;
+    this.email = email;
     this.metrosCuadrados = metrosCuadrados;
     this.ciudad = ciudad;
     this.provincia = provincia;
@@ -39,3 +43,6 @@ class Propiedad {
     return `${this.tipoPropiedad} en ${this.calle}, ${this.ciudad}. ${this.metrosCuadrados} m², ${this.habitacion} habitaciones, ${this.bano} baños.`;
   }
 }
+
+
+export default Propiedad;
