@@ -9,11 +9,12 @@ import avatar from '../assets/avatar_default.png';
 const NavigationBar = () => {
   return (
     <div className="navigation-bar">
-      <div className="logo-container">
-        <Link to="/Propiedades">
+      <Link to="/Propiedades" className="nav-link">
+        <div className="logo-container">
           <img src={nexahome} alt="Nexahome" className="logo" />
-        </Link>
-      </div>
+          &nbsp;&nbsp;&nbsp;Home
+        </div>
+      </Link>
       <Link to="/PropiedadForm" className="nav-link">
         <div className="icon-text-container">
           <img src={propiedadIcon} alt="Add Property" className="icon" />

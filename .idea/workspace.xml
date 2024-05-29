@@ -4,10 +4,12 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e141208e-92b4-44dd-9a15-c2495012da98" name="Changes" comment="Añadido Estilos + Possible integracion de imagen">
+    <list default="true" id="e141208e-92b4-44dd-9a15-c2495012da98" name="Changes" comment="Cambios en perfil + changePass">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/screens/NavigationBar.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/NavigationBar.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/screens/PerfilScreen.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/PerfilScreen.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/screens/change-password.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/change-password.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/styles/LoginRegistro.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/styles/LoginRegistro.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/styles/Perfil.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/styles/Perfil.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -307,7 +309,15 @@
       <option name="project" value="LOCAL" />
       <updated>1717000000973</updated>
     </task>
-    <option name="localTasksCounter" value="29" />
+    <task id="LOCAL-00029" summary="Cambios en perfil + changePass">
+      <option name="closed" value="true" />
+      <created>1717013589087</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1717013589087</updated>
+    </task>
+    <option name="localTasksCounter" value="30" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -340,6 +350,7 @@
     <MESSAGE value="Tests v2" />
     <MESSAGE value="Añadido Errores de contraseña, creada clase para propiedades, mostrar todas las propiedades" />
     <MESSAGE value="Añadido Estilos + Possible integracion de imagen" />
-    <option name="LAST_COMMIT_MESSAGE" value="Añadido Estilos + Possible integracion de imagen" />
+    <MESSAGE value="Cambios en perfil + changePass" />
+    <option name="LAST_COMMIT_MESSAGE" value="Cambios en perfil + changePass" />
   </component>
 </project>

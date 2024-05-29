@@ -13,7 +13,6 @@ const ProfileScreen = () => {
     const fetchUserInfo = async () => {
       const token = localStorage.getItem('token');
       if (!token) {
-     //   navigate('/');
         return;
       }
 
@@ -50,17 +49,18 @@ const ProfileScreen = () => {
       <NavigationBar />
       <div className="profile-screen">
         <h1 className="bienvenido">Bienvenido {userInfo ? userInfo.name : 'Cargando...'}</h1>
-        <h2 className="profile-heading">Datos</h2>
-        {userInfo ? (
-          <div className="user-properties">
-            <p>Email: {userInfo.email}</p>
-            <p>Teléfono: {userInfo.telefono}</p>
-            <p>Premium: {userInfo.premium ? 'Sí' : 'No'}</p>
-          </div>
-        ) : (
-          <p>Cargando información del usuario...</p>
-        )}
-
+        <div className="profile-card">
+          <h2 className="profile-heading">Datos</h2>
+          {userInfo ? (
+            <div className="user-properties">
+              <p>Email: {userInfo.email}</p>
+              <p>Teléfono: {userInfo.telefono}</p>
+              <p>Premium: {userInfo.premium ? 'Sí' : 'No'}</p>
+            </div>
+          ) : (
+            <p>Cargando información del usuario...</p>
+          )}
+        </div>
         <div className="profile-options">
           <Link to="/MiPropiedad" className="profile-button">Tus propiedades</Link>
           <Link to="/edit-profile" className="profile-button">Editar perfil</Link>
