@@ -1,70 +1,26 @@
-import React, { useState, useEffect } from 'react'; // Importa React y los hooks useState y useEffect
-import { useNavigate } from 'react-router-dom'; // Importa el hook useNavigate de react-router-dom para la navegación
-import '../styles/Propiedades.css'; // Importa los estilos CSS específicos para esta página
-import NavigationBar from './NavigationBar'; // Importa el componente NavigationBar
-import Modal from 'react-modal'; // Importa el componente Modal de react-modal
-import casa from '../assets/casa.jpg'; // Importa una imagen de casa
-import bano from '../assets/bano.jpg'; // Importa una imagen de baño
-import superficie from '../assets/superficie.png'; // Importa una imagen de superficie
-import habitacion from '../assets/habitacion.png'; // Importa una imagen de habitación
-// import { propiedadesPrueba } from './datosPrueba'; // Importación comentada de datos de prueba
-
-// Define una clase Propiedad que contiene las propiedades de una propiedad inmobiliaria
-class Propiedad {
-  constructor({
-    metrosCuadrados,
-    ciudad,
-    provincia,
-    calle,
-    numero,
-    precio,
-    estado,
-    parking,
-    piscina,
-    tipoPropiedad,
-    planta,
-    descripcion,
-    habitacion,
-    bano,
-    orientacion,
-    ascensor
-  }) {
-    // Inicializa las propiedades del objeto
-    this.metrosCuadrados = metrosCuadrados;
-    this.ciudad = ciudad;
-    this.provincia = provincia;
-    this.calle = calle;
-    this.numero = numero;
-    this.precio = precio;
-    this.estado = estado;
-    this.parking = parking;
-    this.piscina = piscina;
-    this.tipoPropiedad = tipoPropiedad;
-    this.planta = planta;
-    this.descripcion = descripcion;
-    this.habitacion = habitacion;
-    this.bano = bano;
-    this.orientacion = orientacion;
-    this.ascensor = ascensor;
-  }
-
-  // Método para obtener una descripción breve de la propiedad
-  obtenerDescripcionBreve() {
-    return `${this.tipoPropiedad} en ${this.calle}, ${this.ciudad}. ${this.metrosCuadrados} m², ${this.habitacion} habitaciones, ${this.bano} baños.`;
-  }
-}
+import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+import '../styles/Propiedades.css';
+import NavigationBar from './NavigationBar';
+import Modal from 'react-modal';
+import casa from '../assets/casa.jpg';
+import bano from '../assets/bano.jpg';
+import superficie from '../assets/superficie.png';
+import habitacion from '../assets/habitacion.png';
+import Propiedad from './Propiedad';
 
 function MiPropiedad() {
-  const navigate = useNavigate(); // Hook para la navegación
-  const [propiedades, setPropiedades] = useState([]); // Estado para almacenar las propiedades
-  const [modalIsOpen, setModalIsOpen] = useState(false); // Estado para controlar si el modal está abierto
-  const [selectedProperty, setSelectedProperty] = useState(null); // Estado para almacenar la propiedad seleccionada
-  const API_BASE_URL = 'http://192.168.0.23:7770'; // URL base de la API
+  const navigate = useNavigate();
+  const [propiedades, setPropiedades] = useState([]);
+  const [modalIsOpen, setModalIsOpen] = useState(false);
+  const [selectedProperty, setSelectedProperty] = useState(null);
+
+  const API_BASE_URL = 'http://192.168.0.23:7770';
 
   // Hook useEffect para obtener las propiedades cuando el componente se monta
   useEffect(() => {
     const fetchMisPropiedades = async () => {
-      const token = localStorage.getItem('token'); // Obtiene el token del localStorage
+      const token = localStorage.getItem('token');
       if (!token) {
         alert('No estás logueado. Por favor, inicia sesión.');
         navigate('/'); // Redirige al usuario si no está logueado
@@ -120,26 +76,24 @@ function MiPropiedad() {
           console.log(property.obtenerDescripcionBreve());
         })
 
-        //const propiedadesData = data.map((item) => new Propiedad(item)); // Mapea los datos a instancias de la clase Propiedad
-        //console.log('Información de las propiedades obtenida:', propiedadesData);
-        setPropiedades(propiedadesData); // Actualiza el estado con las propiedades obtenidas
+        setPropiedades(propiedadesData);
       } catch (error) {
         console.error('Error al obtener las propiedades:', error);
         alert(`Error al obtener las propiedades: ${error.message}`);
-        navigate('/'); // Redirige en caso de error
+        navigate('/');
       }
     };
 
     fetchMisPropiedades();
-  }, [navigate]); // El efecto se ejecuta solo una vez al montarse el componente
+  }, [navigate]);
 
-  // Función para abrir el modal y establecer la propiedad seleccionada
+
   const openModal = (property) => {
     setSelectedProperty(property);
     setModalIsOpen(true);
   };
 
-  // Función para cerrar el modal y limpiar la propiedad seleccionada
+
   const closeModal = () => {
     setSelectedProperty(null);
     setModalIsOpen(false);
@@ -194,7 +148,7 @@ function MiPropiedad() {
           </div>
         )}
       </div>
-      {selectedProperty && ( // Condicional para mostrar el modal si hay una propiedad seleccionada
+      {selectedProperty && (
         <Modal
           isOpen={modalIsOpen}
           onRequestClose={closeModal}
@@ -226,4 +180,4 @@ function MiPropiedad() {
   );
 }
 
-export default MiPropiedad; // Exporta el componente MiPropiedad como el valor predeterminado
+export default MiPropiedad;

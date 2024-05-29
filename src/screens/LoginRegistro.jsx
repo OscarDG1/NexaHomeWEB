@@ -1,95 +1,119 @@
-    import React, { useState } from 'react';
-    import icono_usuario from '../assets/person.png';
-    import icono_email from '../assets/email.png';
-    import icono_password from '../assets/password.png';
-    import icono_telefono from '../assets/telefono.png';
-    import '../styles/LoginRegistro.css';
-    import nexahomeLogo from '../assets/nexahome.png';
-    import videoFondo from '../assets/MenuLogin.mp4';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import icono_usuario from '../assets/person.png';
+import icono_email from '../assets/email.png';
+import icono_password from '../assets/password.png';
+import icono_telefono from '../assets/telefono.png';
+import '../styles/LoginRegistro.css';
+import videoFondo from '../assets/MenuLogin.mp4';
 
-    const API_BASE_URL = 'http://192.168.0.23:7770';
+const API_BASE_URL = 'http://192.168.0.23:7770';
 
-    const LoginRegistro = () => {
-      const [user, setUser] = useState({ name: '', email: '', password: '', telefono: '' });
-      const [action, setAction] = useState('Registro');
-      const navigate = useNavigate();
+const LoginRegistro = () => {
+  const [user, setUser] = useState({ name: '', email: '', password: '', telefono: '' });
+  const [action, setAction] = useState('Registro');
+  const [errors, setErrors] = useState({});
+  const navigate = useNavigate();
 
-     const handleRegistro = async () => {
-       try {
-         console.log('Datos enviados en la solicitud de registro:', {
-           name: user.name,
-           email: user.email,
-           passw: user.password,
-           phone: user.telefono
-         });
+  const validatePassword = (password) => {
+    const errors = {};
+    if (password.length < 8) {
+      errors.length = 'La contraseña debe tener al menos 8 caracteres';
+    }
+    if (!/[A-Z]/.test(password)) {
+      errors.uppercase = 'La contraseña debe contener al menos una letra mayúscula';
+    }
+    if (!/[a-z]/.test(password)) {
+      errors.lowercase = 'La contraseña debe contener al menos una letra minúscula';
+    }
+    if (!/[0-9]/.test(password)) {
+      errors.number = 'La contraseña debe contener al menos un número';
+    }
+    if (!/[!@#$%^&*.,]/.test(password)) {
+      errors.special = 'La contraseña debe contener al menos un carácter especial (!@#$%^&*.,)';
+    }
+    if (/\s/.test(password)) {
+      errors.whitespace = 'La contraseña no debe contener espacios en blanco';
+    }
+    return errors;
+  };
 
-         const response = await fetch(`${API_BASE_URL}/register`, {
-           method: 'POST',
-           headers: {
-             'Content-Type': 'application/json',
-           },
-           body: JSON.stringify({
-             name: user.name,
-             email: user.email,
-             passw: user.password,
-             phone: user.telefono
-           }),
-         });
+  const handleRegistro = async () => {
+    const passwordErrors = validatePassword(user.password);
+    if (Object.keys(passwordErrors).length > 0) {
+      setErrors(passwordErrors);
+      return;
+    }
 
-         if (!response.ok) {
-           throw new Error('Error al registrar el usuario');
-         }
+    try {
+      const response = await fetch(`${API_BASE_URL}/register`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          name: user.name,
+          email: user.email,
+          passw: user.password,
+          phone: user.telefono,
+        }),
+      });
 
-         alert('Registro exitoso');
-       } catch (error) {
-         console.error('Error al registrar el usuario:', error);
-         alert('Error al realizar el registro. Por favor, inténtalo de nuevo.');
-       }
-     };
+      if (!response.ok) {
+        throw new Error('Error al registrar el usuario');
+      }
+    } catch (error) {
+      console.error('Error al registrar el usuario:', error);
+      alert('Error al realizar el registro. Por favor, inténtalo de nuevo.');
+    }
+  };
 
-      const handleLogin = async () => {
-        try {
-          const response = await fetch(`${API_BASE_URL}/login`, {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({
-              email: user.email,
-              passw: user.password
-            }),
-          });
-          if (!response.ok) {
-            throw new Error('Error al iniciar sesión');
-          }
-          const data = await response.json();
-          if (data.token) {
-            localStorage.setItem('token', data.token);
-            alert('Inicio de sesión exitoso');
-            navigate('/propiedades');
+  const handleLogin = async () => {
+    try {
+      const response = await fetch(`${API_BASE_URL}/login`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          email: user.email,
+          passw: user.password,
+        }),
+      });
 
-          } else {
-            alert('Credenciales incorrectas');
-          }
-        } catch (error) {
-          console.error('Error al iniciar sesión:', error);
-          alert('Error al iniciar sesión. Por favor, inténtalo de nuevo.');
-        }
-      };
+      if (!response.ok) {
+        throw new Error('Error al iniciar sesión');
+      }
 
+      const data = await response.json();
 
-      const handleChange = (field, value) => {
-        setUser({ ...user, [field]: value });
-      };
+      if (data.token) {
+        localStorage.setItem('token', data.token);
+        navigate('/propiedades');
+      } else {
+        alert('Credenciales incorrectas');
+      }
+    } catch (error) {
+      console.error('Error al iniciar sesión:', error);
+      alert('Error al iniciar sesión. Por favor, inténtalo de nuevo.');
+    }
+  };
 
-      const switchToLogin = () => {
-        setAction('Login');
-      };
+  const handleChange = (field, value) => {
+    setUser({ ...user, [field]: value });
+    if (field === 'password') {
+      const passwordErrors = validatePassword(value);
+      setErrors({ ...errors, password: passwordErrors });
+    }
+  };
 
-      const switchToRegistro = () => {
-        setAction('Registro');
-      };
+  const switchToLogin = () => {
+    setAction('Login');
+  };
+
+  const switchToRegistro = () => {
+    setAction('Registro');
+  };
 
       return (
         <div className="container">
