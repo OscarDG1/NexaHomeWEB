@@ -4,17 +4,22 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e141208e-92b4-44dd-9a15-c2495012da98" name="Changes" comment="Tests v2">
-      <change afterPath="$PROJECT_DIR$/src/screens/Propiedad.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/screens/datosPrueba.jsx" afterDir="false" />
+    <list default="true" id="e141208e-92b4-44dd-9a15-c2495012da98" name="Changes" comment="Añadido Errores de contraseña, creada clase para propiedades, mostrar todas las propiedades">
+      <change afterPath="$PROJECT_DIR$/src/assets/fondopantalla.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/styles/global.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/screens/LoginRegistro.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/LoginRegistro.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/App.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/screens/HomeScreen.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/HomeScreen.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/screens/MiPropiedad.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/MiPropiedad.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/screens/PropiedadForm.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/PropiedadForm.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/screens/Propiedades.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/Propiedades.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/screens/change-password.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/change-password.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/styles/LoginRegistro.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/styles/LoginRegistro.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/styles/PropiedadForm.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/styles/PropiedadForm.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/styles/Propiedades.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/styles/Propiedades.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/styles/password.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/styles/password.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -77,6 +82,7 @@
       <recent name="D:\AndroidStudioProjects\NexaHomeWEB\public" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\Android Proyectos\NexaHomeWEB\src\assets" />
       <recent name="D:\AndroidStudioProjects\NexaHomeWEB\src\assets" />
     </key>
   </component>
@@ -297,7 +303,15 @@
       <option name="project" value="LOCAL" />
       <updated>1716910992176</updated>
     </task>
-    <option name="localTasksCounter" value="27" />
+    <task id="LOCAL-00027" summary="Añadido Errores de contraseña, creada clase para propiedades, mostrar todas las propiedades">
+      <option name="closed" value="true" />
+      <created>1716976518988</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1716976518988</updated>
+    </task>
+    <option name="localTasksCounter" value="28" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -328,6 +342,7 @@
     <MESSAGE value="Cambios estetica" />
     <MESSAGE value="Tests" />
     <MESSAGE value="Tests v2" />
-    <option name="LAST_COMMIT_MESSAGE" value="Tests v2" />
+    <MESSAGE value="Añadido Errores de contraseña, creada clase para propiedades, mostrar todas las propiedades" />
+    <option name="LAST_COMMIT_MESSAGE" value="Añadido Errores de contraseña, creada clase para propiedades, mostrar todas las propiedades" />
   </component>
 </project>

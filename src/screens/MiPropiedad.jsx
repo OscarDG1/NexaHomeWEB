@@ -141,7 +141,6 @@ function MiPropiedad() {
                           {propiedad.bano && <img src={bano} alt="Icono de baños" className="property-icon" />}
                         </span>
                       </div>
-                      <button className="contact-button btn" onClick={() => alert('Contacto no implementado')}>Contactar</button>
                     </div>
                   </div>
                 );

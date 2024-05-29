@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+
 import NavigationBar from './NavigationBar'; // Suponiendo que el componente NavigationBar está en el archivo NavigationBar.js
 import '../styles/password.css';
 

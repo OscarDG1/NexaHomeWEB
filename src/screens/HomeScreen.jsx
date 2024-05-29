@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import Autosuggest from 'react-autosuggest';
 import '../styles/HomeScreen.css';
 import nexahomeLogo from '../assets/nexahome.png';
 import lupaIcon from '../assets/lupa.png';
@@ -10,6 +11,12 @@ const HomeScreen = () => {
   const [selectedOption, setSelectedOption] = useState(null);
   const [loggedIn, setLoggedIn] = useState(false);
   const [username, setUsername] = useState('');
+  const [cities, setCities] = useState([]);
+  const [searchQuery, setSearchQuery] = useState('');
+  const [suggestions, setSuggestions] = useState([]);
+
+
+   const API_BASE_URL = 'http://192.168.0.23:7770';
 
   useEffect(() => {
     const checkLoggedInStatus = async () => {
@@ -27,6 +34,20 @@ const HomeScreen = () => {
     checkLoggedInStatus();
   }, []);
 
+  useEffect(() => {
+    const fetchCities = async () => {
+      try {
+        const response = await fetch('API_BASE_URL/cities');
+        const data = await response.json();
+        setCities(data);
+      } catch (error) {
+        console.error('Error al obtener las ciudades:', error);
+      }
+    };
+
+    fetchCities();
+  }, []);
+
   const handleOptionPress = (option) => {
     if (option === 'Cerrar sesión') {
       handleLogout();
@@ -35,7 +56,7 @@ const HomeScreen = () => {
     } else if (option === 'comprar' || option === 'alquilar') {
       setSelectedOption(option);
     } else {
-      // Manejar otras opciones si es necesario
+
     }
   };
 
@@ -50,7 +71,36 @@ const HomeScreen = () => {
   };
 
   const handleSearch = () => {
-    // Manejar la funcionalidad de búsqueda
+    navigate(`/search?city=${searchQuery}`);
+  };
+
+  const getSuggestions = (value) => {
+    const inputValue = value.trim().toLowerCase();
+    const inputLength = inputValue.length;
+    return inputLength === 0 ? [] : cities.filter(city =>
+      city.toLowerCase().slice(0, inputLength) === inputValue
+    );
+  };
+
+  const renderSuggestion = (suggestion) => (
+    <div>
+      {suggestion}
+    </div>
+  );
+
+  const onChange = (event, { newValue }) => {
+    setSearchQuery(newValue);
+  };
+
+  const onSuggestionSelected = (event, { suggestion }) => {
+    setSearchQuery(suggestion);
+    handleSearch();
+  };
+
+  const inputProps = {
+    placeholder: 'Buscar pisos por ciudad...',
+    value: searchQuery,
+    onChange: onChange
   };
 
   return (
@@ -75,15 +125,17 @@ const HomeScreen = () => {
           </div>
         </div>
         <div className="searchBar">
+          <input
+            type="text"
+            placeholder="Buscar pisos por ciudad..."
+            className="searchInput"
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+          />
           <img
             src={lupaIcon}
             alt="Buscar"
             className="searchIcon"
-          />
-          <input
-            type="text"
-            placeholder="Buscar pisos..."
-            className="searchInput"
           />
           <button
             className="searchButton"

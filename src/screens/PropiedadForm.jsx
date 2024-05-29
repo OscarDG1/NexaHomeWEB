@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import '../styles/PropiedadForm.css';
 import NavigationBar from './NavigationBar';
 
+
 function PropiedadForm() {
   const navigate = useNavigate();
   const [propiedad, setPropiedad] = useState({
@@ -15,8 +16,8 @@ function PropiedadForm() {
     planta: 0,
     descripcion: '',
     tipoPropiedad: '',
-    habitacion: '',
-    bano: '',
+    habitacion: 0,
+    bano: 0,
     estado: '',
     orientacion: '',
     ascensor: false,

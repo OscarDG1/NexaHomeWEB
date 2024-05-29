@@ -1,6 +1,7 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 
+import './styles/global.css';
 import HomeScreen from './screens/HomeScreen';
 import PerfilScreen from './screens/PerfilScreen';
 import LoginRegistro from './screens/LoginRegistro';

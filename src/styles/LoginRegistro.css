@@ -50,7 +50,6 @@
   padding-left: 10px;
 }
 
-
 .icon {
   width: 18px;
   height: 18px;
@@ -103,26 +102,4 @@
   position: relative;
   z-index: 1;
   overflow: hidden;
-}
-
-button:hover {
-  color: black;
-}
-
-button:after {
-  content: "";
-  background: white;
-  position: absolute;
-  z-index: -1;
-  left: -20%;
-  right: -20%;
-  top: 0;
-  bottom: 0;
-  transform: skewX(-45deg) scale(0, 1);
-  transition: all 0.5s;
-}
-
-button:hover:after {
-  transform: skewX(-45deg) scale(1, 1);
-  transition: all 0.5s;
 }
