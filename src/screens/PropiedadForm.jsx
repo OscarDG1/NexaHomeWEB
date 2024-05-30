@@ -78,10 +78,10 @@ function PropiedadForm() {
           } else {
               console.log('No hay imágenes para subir');
           }
-         navigate('/Propiedades');
+         //navigate('/Propiedades');
       } catch (error) {
           console.error('Error al guardar la propiedad:', error);
-          alert(`Error al guardar la propiedad: ${error.message}`);
+          alert(`Error al guardar la propiedad: Casas maximas alcanzadas`);
       }
   };
 
@@ -93,6 +93,7 @@ function PropiedadForm() {
               'Content-Type': 'application/json',
               'Authorization': token,
           },
+          
           body: JSON.stringify(propiedad),
       });
 

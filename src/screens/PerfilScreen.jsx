@@ -63,9 +63,9 @@ const ProfileScreen = () => {
         </div>
         <div className="profile-options">
           <Link to="/MiPropiedad" className="profile-button">Tus propiedades</Link>
-          <Link to="/edit-profile" className="profile-button">Editar perfil</Link>
           <Link to="/change-password" className="profile-button">Cambiar contraseña</Link>
           <Link to="/socialMedia" className="profile-button">Redes sociales</Link>
+          <Link to="" className="profile-button">Adquirir Premium</Link>
           <button onClick={handleLogout} className="profile-button">Cerrar sesión</button>
         </div>
       </div>
