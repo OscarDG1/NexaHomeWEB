@@ -8,6 +8,8 @@ import bano from '../assets/bano.jpg';
 import superficie from '../assets/superficie.png';
 import habitacion from '../assets/habitacion.png';
 import Fondo from '../assets/fondopantalla.jpg';
+import Slider from 'react-slick';
+
 
 const API_BASE_URL = 'http://192.168.0.23:7770';
 
@@ -108,98 +110,113 @@ function Propiedades() {
     setContactModalIsOpen(true);
   };
 
-  const closeContactModal = () => {
-    setContactProperty(null);
-    setContactModalIsOpen(false);
-  };
+   const closeContactModal = () => {
+     setContactProperty(null);
+     setContactModalIsOpen(false);
+   };
 
-  return (
-    <div>
-      <NavigationBar />
-      <div className="property-list">
-        {propiedades.length === 0 ? (
-          <div className="msg">
-            <p className="msg">Cargando propiedades...</p>
-          </div>
-        ) : (
-          <div>
-            {propiedades.map((propiedad, index) => (
-              <div key={index} className="property-card" onClick={() => openModal(propiedad)}>
-                <div className="property-image-container">
-                  {propiedad.imagePath ? (
-                    <img src={propiedad.imagePath} alt="Imagen de la casa" className="property-image" />
-                  ) : (
-                    <div className="no-image">No hay imagen disponible</div>
-                  )}
-                </div>
-                <div className="property-details">
-                  <div className="property-texts">
-                    <span className="property-price">
-                      <span className="price-bold">{propiedad.precio ? `${propiedad.precio}€` : 'Precio no disponible'}</span>
-                    </span>
-                    <span className="property-meters">
-                      <span className="price-bold">Superficie:</span>&nbsp;{propiedad.metrosCuadrados ? `${propiedad.metrosCuadrados} m²` : 'Superficie no disponible'}
-                    </span>
-                    <span className="property-bedrooms">
-                      <span className="price-bold">Habitaciones:</span>&nbsp;{propiedad.habitacion || 'No disponible'}
-                      {propiedad.habitacion && <img src={habitacion} alt="Icono de habitaciones" className="property-icon" />}
-                    </span>
-                    <span className="property-bathrooms">
-                      <span className="price-bold">Baños:</span>&nbsp;{propiedad.bano || 'No disponible'}
-                      {propiedad.bano && <img src={bano} alt="Icono de baños" className="property-icon" />}
-                    </span>
-                  </div>
-                  <button className="contact-button btn" onClick={(e) => { e.stopPropagation(); openContactModal(propiedad); }}>Contactar</button>
-                </div>
-              </div>
-            ))}
-          </div>
-        )}
-      </div>
-      {selectedProperty && (
-        <Modal
-          isOpen={modalIsOpen}
-          onRequestClose={closeModal}
-          contentLabel="Detalles de la propiedad"
-          className="modal"
-          overlayClassName="modal-overlay"
-        >
-          <h2>{selectedProperty.calle} {selectedProperty.numero}, {selectedProperty.ciudad}</h2>
-          <p>Precio: {selectedProperty.precio}€</p>
-          <p>Superficie: {selectedProperty.metrosCuadrados} m²</p>
-          <p>Habitaciones: {selectedProperty.habitacion}</p>
-          <p>Baños: {selectedProperty.bano}</p>
-          <p>Ciudad: {selectedProperty.ciudad}</p>
-          <p>Provincia: {selectedProperty.provincia}</p>
-          <p>Calle: {selectedProperty.calle}</p>
-          <p>Número: {selectedProperty.numero}</p>
-          <p>Planta: {selectedProperty.planta}</p>
-          <p>Descripción: {selectedProperty.descripcion}</p>
-          <p>Tipo de Propiedad: {selectedProperty.tipoPropiedad}</p>
-          <p>Estado: {selectedProperty.estado}</p>
-          <p>Orientación: {selectedProperty.orientacion}</p>
-          <p>Ascensor: {selectedProperty.ascensor ? 'Sí' : 'No'}</p>
-          <p>Parking: {selectedProperty.parking ? 'Sí' : 'No'}</p>
-          <p>Piscina: {selectedProperty.piscina ? 'Sí' : 'No'}</p>
-          <button onClick={closeModal}>Cerrar</button>
-        </Modal>
-      )}
-      {contactProperty && (
-        <Modal
-          isOpen={contactModalIsOpen}
-          onRequestClose={closeContactModal}
-          contentLabel="Contactar Propiedad"
-          className="modal"
-          overlayClassName="modal-overlay"
-        >
-          <h2>Contactar Propiedad</h2>
-          <p>ID: {contactProperty.id}</p>
-          <p>Email: {contactProperty.email}</p>
-          <button onClick={closeContactModal}>Cerrar</button>
-        </Modal>
-      )}
-    </div>
-  );
-}
+   return (
+     <div>
+       <NavigationBar />
+       <div className="property-list">
+         {error ? (
+           <div className="msg">
+             <p className="msg">Error: {error}</p>
+           </div>
+         ) : propiedades.length === 0 ? (
+           <div className="msg">
+             <p className="msg">Cargando propiedades...</p>
+           </div>
+         ) : (
+           <div>
+             {propiedades.map((propiedad, index) => (
+               <div key={index} className="property-card" onClick={() => openModal(propiedad)}>
+                 <div className="property-image-container">
+                   {propiedad.imageUrls && propiedad.imageUrls.length > 0 ? (
+                     <img src={propiedad.imageUrls[0]} alt="Imagen de la casa" className="property-image" />
+                   ) : (
+                     <div className="no-image">No hay imagen disponible</div>
+                   )}
+                 </div>
+                 <div className="property-details">
+                   <div className="property-texts">
+                     <span className="property-price">
+                       <span className="price-bold">{propiedad.precio ? `${propiedad.precio}€` : 'Precio no disponible'}</span>
+                     </span>
+                     <span className="property-meters">
+                       <span className="price-bold">Superficie:</span>&nbsp;{propiedad.metrosCuadrados ? `${propiedad.metrosCuadrados} m²` : 'Superficie no disponible'}
+                     </span>
+                     <span className="property-bedrooms">
+                       <span className="price-bold">Habitaciones:</span>&nbsp;{propiedad.habitacion || 'No disponible'}
+                       {propiedad.habitacion && <img src={habitacion} alt="Icono de habitaciones" className="property-icon" />}
+                     </span>
+                     <span className="property-bathrooms">
+                       <span className="price-bold">Baños:</span>&nbsp;{propiedad.bano || 'No disponible'}
+                       {propiedad.bano && <img src={bano} alt="Icono de baños" className="property-icon" />}
+                     </span>
+                   </div>
+                   <button className="contact-button btn" onClick={(e) => { e.stopPropagation(); openContactModal(propiedad); }}>Contactar</button>
+                 </div>
+               </div>
+             ))}
+           </div>
+         )}
+       </div>
+       {selectedProperty && (
+       <Modal
+           isOpen={modalIsOpen}
+           onRequestClose={closeModal}
+           contentLabel="Detalles de la propiedad"
+           className="modal"
+           overlayClassName="modal-overlay"
+         >
+           <h2>{selectedProperty.calle} {selectedProperty.numero}, {selectedProperty.ciudad}</h2>
+           <div className="modal-image-container">
+             <Slider>
+               {selectedProperty.imageUrls.map((url, index) => (
+                 <div key={index}>
+                   <img src={url} alt={`Imagen ${index + 1}`} className="modal-image" />
+                 </div>
+               ))}
+             </Slider>
+           </div>
+           <div className="property-details bold-text">
+             <p>Precio: {selectedProperty.precio}€</p>
+             <p>Superficie: {selectedProperty.metrosCuadrados} m²</p>
+             <p>Habitaciones: {selectedProperty.habitacion}</p>
+             <p>Baños: {selectedProperty.bano}</p>
+             <p>Ciudad: {selectedProperty.ciudad}</p>
+             <p>Provincia: {selectedProperty.provincia}</p>
+             <p>Calle: {selectedProperty.calle}</p>
+             <p>Número: {selectedProperty.numero}</p>
+             <p>Planta: {selectedProperty.planta}</p>
+             <p>Descripción: {selectedProperty.descripcion}</p>
+             <p>Tipo de Propiedad: {selectedProperty.tipoPropiedad}</p>
+             <p>Estado: {selectedProperty.estado}</p>
+             <p>Orientación: {selectedProperty.orientacion}</p>
+             <p>Ascensor: {selectedProperty.ascensor ? 'Sí' : 'No'}</p>
+             <p>Parking: {selectedProperty.parking ? 'Sí' : 'No'}</p>
+             <p>Piscina: {selectedProperty.piscina ? 'Sí' : 'No'}</p>
+           </div>
+           <button onClick={closeModal}>Cerrar</button>
+         </Modal>
+       )}
+       {contactProperty && (
+         <Modal
+           isOpen={contactModalIsOpen}
+           onRequestClose={closeContactModal}
+           contentLabel="Contactar Propiedad"
+           className="modal"
+           overlayClassName="modal-overlay"
+         >
+           <h2>Contactar Propiedad</h2>
+           <p>ID: {contactProperty.id}</p>
+           <p>Email: {contactProperty.email}</p>
+           <button onClick={closeContactModal}>Cerrar</button>
+         </Modal>
+       )}
+     </div>
+   );
+ }
 
-export default Propiedades;
+ export default Propiedades;

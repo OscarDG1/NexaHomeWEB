@@ -10,7 +10,7 @@ import Propiedades from './screens/Propiedades';
 import SocialMediaPage from './screens/SocialMediaPage';
 import ChangePassword from './screens/change-password';
 import EditProfile from './screens/edit-profile';
-import MiPropiedad from './screens/MiPropiedad'; // Cambiado aquí
+import MiPropiedad from './screens/MiPropiedad';
 
 function App() {
   return (

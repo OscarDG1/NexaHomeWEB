@@ -113,6 +113,23 @@
   z-index: 1000;
 }
 
+.modal-image-container {
+  max-width: 100%;
+  max-height: 80vh; /* Ajusta según tus necesidades */
+  overflow: hidden;
+}
+
+.modal-image {
+  width: 100%;
+  height: auto;
+  object-fit: cover; /* Ajusta según tus necesidades */
+}
+
+.bold-text p {
+  font-weight: bold;
+}
+
+
 @media (max-width: 768px) {
   .property-card {
     flex-direction: column;
